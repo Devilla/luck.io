@@ -40,13 +40,13 @@ export default function UserLoginCard({ userLogin }: UserLoginCardProps) {
             <div className="text-sm text-primary-600">Total Bets</div>
           </div>
           <div className="text-center p-4 bg-gray-50 rounded-lg">
-            <div className="text-xs font-bold text-gray-700">
+            <div className="text-xs font-medium text-gray-700">
               {formatCurrency(userLogin.wagered || 0)}
             </div>
             <div className="text-sm text-gray-600">Total Wagered</div>
           </div>
           <div className={`text-center p-4 rounded-lg ${isProfit ? 'bg-success-50' : 'bg-danger-50'}`}>
-            <div className={`text-xs font-bold ${isProfit ? 'text-success-700' : 'text-danger-700'}`}>
+            <div className={`text-xs font-medium ${isProfit ? 'text-success-700' : 'text-danger-700'}`}>
               {formatCurrency(userLogin.won || 0)}
             </div>
             <div className={`text-sm ${isProfit ? 'text-success-600' : 'text-danger-600'}`}>

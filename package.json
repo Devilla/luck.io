@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "pnpm build && pnpm start",
+    "deploy:vercel": "vercel --prod",
+    "deploy:netlify": "pnpm build && netlify deploy --prod --dir=.next"
   },
   "dependencies": {
     "next": "14.0.0",
