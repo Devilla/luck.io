@@ -39,3 +39,6 @@ next-env.d.ts
 
 # OS
 Thumbs.db
+
+# Large data files
+bets_all.jsonl
