@@ -1,0 +1,723 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Length 12040 >>
+stream
+BT
+/F1 16 Tf
+1 0 0 1 40.00 742.00 Tm (Solana RNG / Oracle Evidence Report) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 726.00 Tm (Generated: 2025-08-14 06:18:42 UTC) Tj
+ET
+BT
+/F1 12 Tf
+1 0 0 1 40.00 706.00 Tm (1. Transaction Details \(Solscan reference\)) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 692.00 Tm (Solscan Link:) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 678.00 Tm (https://solscan.io/tx/5s1N4ZfXETh3AgpJfUR57xMkGtetmKQ5UMMtVWxXdQa85XjrFi9m5A8rBZwnk6yQa98Hyd7Ar3xujV687zn8cjSo) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 664.00 Tm (Signature: 5s1N4ZfXETh3AgpJfUR57xMkGtetmKQ5UMMtVWxXdQa85XjrFi9m5A8rBZwnk6yQa98Hyd7Ar3xujV687zn8cjSo) Tj
+ET
+BT
+/F1 11 Tf
+1 0 0 1 40.00 650.00 Tm (Signature Status \(RPC\):) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 636.00 Tm ({"confirmationStatus": "finalized", "confirmations": null, "err": null, "slot": 357054852, "status": {"Ok":) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 622.00 Tm (null}}) Tj
+ET
+40.00 594.00 530.00 16.00 re
+S
+40.00 594.00 150.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 598.00 Tm (Field) Tj
+ET
+190.00 594.00 380.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 194.00 598.00 Tm (Value) Tj
+ET
+40.00 578.00 150.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 582.00 Tm (Slot) Tj
+ET
+190.00 578.00 380.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 194.00 582.00 Tm (357054852) Tj
+ET
+40.00 562.00 150.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 566.00 Tm (Block time \(UTC\)) Tj
+ET
+190.00 562.00 380.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 194.00 566.00 Tm (2025-08-01 00:43:59 UTC) Tj
+ET
+40.00 536.00 600.00 16.00 re
+S
+40.00 536.00 40.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 540.00 Tm (Index) Tj
+ET
+80.00 536.00 240.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 84.00 540.00 Tm (Address) Tj
+ET
+320.00 536.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 324.00 540.00 Tm (Signer) Tj
+ET
+380.00 536.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 384.00 540.00 Tm (Writable) Tj
+ET
+440.00 536.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 444.00 540.00 Tm (Pre SOL) Tj
+ET
+540.00 536.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 544.00 540.00 Tm (Post SOL) Tj
+ET
+40.00 520.00 40.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 524.00 Tm (0) Tj
+ET
+80.00 520.00 240.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 84.00 524.00 Tm (proovpdnvjbuxjGspQ4ABSqKs7yNJBvkMKMsgufbjm1) Tj
+ET
+320.00 520.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 324.00 524.00 Tm (True) Tj
+ET
+380.00 520.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 384.00 524.00 Tm (True) Tj
+ET
+440.00 520.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 444.00 524.00 Tm (263.315229602 SOL) Tj
+ET
+540.00 520.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 544.00 524.00 Tm (263.315209602 SOL) Tj
+ET
+40.00 504.00 40.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 508.00 Tm (1) Tj
+ET
+80.00 504.00 240.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 84.00 508.00 Tm (proov2GxFNcZCwzoYwCw9rM4UMEqotuQp2wReSSP89j) Tj
+ET
+320.00 504.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 324.00 508.00 Tm (True) Tj
+ET
+380.00 504.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 384.00 508.00 Tm (False) Tj
+ET
+440.00 504.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 444.00 508.00 Tm (0.000000000 SOL) Tj
+ET
+540.00 504.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 544.00 508.00 Tm (0.000000000 SOL) Tj
+ET
+40.00 488.00 40.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 492.00 Tm (2) Tj
+ET
+80.00 488.00 240.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 84.00 492.00 Tm (proovL22gkDf7FwWFwuWDxJJ8sTqXLoadwyDFuVnF81) Tj
+ET
+320.00 488.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 324.00 492.00 Tm (True) Tj
+ET
+380.00 488.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 384.00 492.00 Tm (False) Tj
+ET
+440.00 488.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 444.00 492.00 Tm (0.000000000 SOL) Tj
+ET
+540.00 488.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 544.00 492.00 Tm (0.000000000 SOL) Tj
+ET
+40.00 472.00 40.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 476.00 Tm (3) Tj
+ET
+80.00 472.00 240.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 84.00 476.00 Tm (proovRQJoxBBsajKZR8i83xFVWApsfeyXvLbgtbboXc) Tj
+ET
+320.00 472.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 324.00 476.00 Tm (True) Tj
+ET
+380.00 472.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 384.00 476.00 Tm (False) Tj
+ET
+440.00 472.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 444.00 476.00 Tm (0.000000000 SOL) Tj
+ET
+540.00 472.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 544.00 476.00 Tm (0.000000000 SOL) Tj
+ET
+40.00 456.00 40.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 460.00 Tm (4) Tj
+ET
+80.00 456.00 240.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 84.00 460.00 Tm (6kRQgeBFq3Qh32rP16cGz9gisfMUM6umFpPZVwkQx8Ez) Tj
+ET
+320.00 456.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 324.00 460.00 Tm (False) Tj
+ET
+380.00 456.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 384.00 460.00 Tm (True) Tj
+ET
+440.00 456.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 444.00 460.00 Tm (1284.938262662 SOL) Tj
+ET
+540.00 456.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 544.00 460.00 Tm (10993.454270202 SOL) Tj
+ET
+40.00 440.00 40.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 444.00 Tm (5) Tj
+ET
+80.00 440.00 240.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 84.00 444.00 Tm (8W79rLdgo7CCeyciZD5hRb4X9o2SmZd86eBGMWQnpGqU) Tj
+ET
+320.00 440.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 324.00 444.00 Tm (False) Tj
+ET
+380.00 440.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 384.00 444.00 Tm (True) Tj
+ET
+440.00 440.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 444.00 444.00 Tm (16063.005754458 SOL) Tj
+ET
+540.00 440.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 544.00 444.00 Tm (6354.489746918 SOL) Tj
+ET
+40.00 424.00 40.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 428.00 Tm (6) Tj
+ET
+80.00 424.00 240.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 84.00 428.00 Tm (AzPKdHpDuBAvqBxBjn86kn16SfRMqzikcrkkhRHMYJbw) Tj
+ET
+320.00 424.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 324.00 428.00 Tm (False) Tj
+ET
+380.00 424.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 384.00 428.00 Tm (True) Tj
+ET
+440.00 424.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 444.00 428.00 Tm (0.001893120 SOL) Tj
+ET
+540.00 424.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 544.00 428.00 Tm (0.001893120 SOL) Tj
+ET
+40.00 408.00 40.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 412.00 Tm (7) Tj
+ET
+80.00 408.00 240.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 84.00 412.00 Tm (So11111111111111111111111111111111111111112) Tj
+ET
+320.00 408.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 324.00 412.00 Tm (False) Tj
+ET
+380.00 408.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 384.00 412.00 Tm (False) Tj
+ET
+440.00 408.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 444.00 412.00 Tm (1104.407521082 SOL) Tj
+ET
+540.00 408.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 544.00 412.00 Tm (1104.407521082 SOL) Tj
+ET
+40.00 392.00 40.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 396.00 Tm (8) Tj
+ET
+80.00 392.00 240.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 84.00 396.00 Tm (TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA) Tj
+ET
+320.00 392.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 324.00 396.00 Tm (False) Tj
+ET
+380.00 392.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 384.00 396.00 Tm (False) Tj
+ET
+440.00 392.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 444.00 396.00 Tm (4.533101809 SOL) Tj
+ET
+540.00 392.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 544.00 396.00 Tm (4.533101809 SOL) Tj
+ET
+40.00 376.00 40.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 380.00 Tm (9) Tj
+ET
+80.00 376.00 240.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 84.00 380.00 Tm (yYWjk6ycNwCPYAjqykJYYDK12geW9JBRi3RqZHu4Rmt) Tj
+ET
+320.00 376.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 324.00 380.00 Tm (False) Tj
+ET
+380.00 376.00 60.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 384.00 380.00 Tm (False) Tj
+ET
+440.00 376.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 444.00 380.00 Tm (0.001179343 SOL) Tj
+ET
+540.00 376.00 100.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 544.00 380.00 Tm (0.001179343 SOL) Tj
+ET
+BT
+/F1 11 Tf
+1 0 0 1 40.00 364.00 Tm (Program Logs:) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 350.00 Tm (0: Program 4pjbtQCpaXFrmT7wcfuCQnAWLCUhRuK9CKQyvou1F5xo invoke [1]) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 336.00 Tm (1: Program log: Instruction: SettleUserGain) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 322.00 Tm (2: Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 308.00 Tm (3: Program log: Instruction: TransferChecked) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 294.00 Tm (4: Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 6238 of 115447 compute units) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 280.00 Tm (5: Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 266.00 Tm (6: Program log: Settled gain of 9708516007540 SPL token So11111111111111111111111111111111111111112 for user) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 252.00 Tm (5or7BFp7S5wf1DLizS2ieQGxArjXmk5DdCGAPoVJJqsK. Next nonce: 43359) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 238.00 Tm (7: Program 4pjbtQCpaXFrmT7wcfuCQnAWLCUhRuK9CKQyvou1F5xo invoke [2]) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 224.00 Tm (8: Program 4pjbtQCpaXFrmT7wcfuCQnAWLCUhRuK9CKQyvou1F5xo consumed 2003 of 83462 compute units) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 210.00 Tm (9: Program 4pjbtQCpaXFrmT7wcfuCQnAWLCUhRuK9CKQyvou1F5xo success) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 196.00 Tm (10: Program 4pjbtQCpaXFrmT7wcfuCQnAWLCUhRuK9CKQyvou1F5xo consumed 119532 of 200000 compute units) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 182.00 Tm (11: Program 4pjbtQCpaXFrmT7wcfuCQnAWLCUhRuK9CKQyvou1F5xo success) Tj
+ET
+BT
+/F1 12 Tf
+1 0 0 1 40.00 168.00 Tm (2. RNG Flow Visualization) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 162.00 Tm (RNG flow: User Click -> Off-chain Oracle -> On-chain Program -> Payout Wallet) Tj
+ET
+40.00 116.00 140.00 32.00 re
+S
+BT
+/F1 10 Tf
+1 0 0 1 70.00 129.00 Tm (User Click) Tj
+ET
+204.00 116.00 140.00 32.00 re
+S
+BT
+/F1 10 Tf
+1 0 0 1 234.00 129.00 Tm (Off-chain Oracle) Tj
+ET
+368.00 116.00 140.00 32.00 re
+S
+BT
+/F1 10 Tf
+1 0 0 1 398.00 129.00 Tm (On-chain Program) Tj
+ET
+532.00 116.00 140.00 32.00 re
+S
+BT
+/F1 10 Tf
+1 0 0 1 562.00 129.00 Tm (Payout Wallet) Tj
+ET
+1.00 w
+184.00 132.00 m 200.00 132.00 l S
+192.00 136.00 m 200.00 132.00 l 192.00 128.00 l h f
+1.00 w
+348.00 132.00 m 364.00 132.00 l S
+356.00 136.00 m 364.00 132.00 l 356.00 128.00 l h f
+1.00 w
+512.00 132.00 m 528.00 132.00 l S
+520.00 136.00 m 528.00 132.00 l 520.00 128.00 l h f
+BT
+/F1 12 Tf
+1 0 0 1 40.00 96.00 Tm (3. Jackpot Probability \(Poisson\)) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 90.00 Tm (Assumptions: spins=5000, jackpot odds=1-in-1,000,000. lambda = 0.005000) Tj
+ET
+1.00 w
+40.00 -44.00 m 560.00 -44.00 l S
+1.00 w
+40.00 -44.00 m 40.00 76.00 l S
+BT
+/F1 8 Tf
+1 0 0 1 30.00 -54.00 Tm (0) Tj
+ET
+BT
+/F1 8 Tf
+1 0 0 1 30.00 78.00 Tm (9.95e-01) Tj
+ET
+40.00 -44.00 57.78 112.00 re
+S
+BT
+/F1 8 Tf
+1 0 0 1 66.89 -56.00 Tm (0) Tj
+ET
+126.67 -44.00 57.78 0.56 re
+S
+BT
+/F1 8 Tf
+1 0 0 1 153.56 -56.00 Tm (1) Tj
+ET
+213.33 -44.00 57.78 0.00 re
+B
+BT
+/F1 8 Tf
+1 0 0 1 240.22 -56.00 Tm (2) Tj
+ET
+300.00 -44.00 57.78 0.00 re
+S
+BT
+/F1 8 Tf
+1 0 0 1 326.89 -56.00 Tm (3) Tj
+ET
+386.67 -44.00 57.78 0.00 re
+S
+BT
+/F1 8 Tf
+1 0 0 1 413.56 -56.00 Tm (4) Tj
+ET
+473.33 -44.00 57.78 0.00 re
+S
+BT
+/F1 8 Tf
+1 0 0 1 500.22 -56.00 Tm (5) Tj
+ET
+BT
+/F1 12 Tf
+1 0 0 1 40.00 -64.00 Tm (4. Proov VRF Record & Details) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 -70.00 Tm (Proov Link:) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 -84.00 Tm (https://proov.network/?balance_address=6kRQgeBFq3Qh32rP16cGz9gisfMUM6umFpPZVwkQx8Ez&nonce=43359) Tj
+ET
+40.00 -112.00 530.00 16.00 re
+S
+40.00 -112.00 160.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 -108.00 Tm (Field) Tj
+ET
+200.00 -112.00 370.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 204.00 -108.00 Tm (Value) Tj
+ET
+40.00 -128.00 160.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 -124.00 Tm (source_url) Tj
+ET
+200.00 -128.00 370.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 204.00 -124.00 Tm (https://proov.network/?balance_address=6kRQgeBFq3Qh32rP16cGz9gisfMUM6umFpPZVwkQx8Ez&nonce=43359) Tj
+ET
+40.00 -144.00 160.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 -140.00 Tm (error) Tj
+ET
+200.00 -144.00 370.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 204.00 -140.00 Tm (HTTP Error 403: Forbidden) Tj
+ET
+BT
+/F1 12 Tf
+1 0 0 1 40.00 -156.00 Tm (Notes) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 -162.00 Tm (- Transaction details fetched from public Solana RPC \(jsonParsed\).) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 -176.00 Tm (- RNG flow diagram illustrates off-chain oracle signing then on-chain posting/payout.) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 -190.00 Tm (- Poisson chart shows jackpot distribution under stated assumptions.) Tj
+ET
+endstream
+endobj
+3 0 obj
+<< /Type /Page /Parent 0 0 R /MediaBox [0 0 612 792] /Contents 2 0 R /Resources << /Font << /F1 1 0 R >> >> >>
+endobj
+4 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+5 0 obj
+<< /Type /Catalog /Pages 4 0 R >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000015 00000 n 
+0000000085 00000 n 
+0000012177 00000 n 
+0000012303 00000 n 
+0000012360 00000 n 
+trailer
+<< /Size 6 /Root 5 0 R >>
+startxref
+12409
+%%EOF
