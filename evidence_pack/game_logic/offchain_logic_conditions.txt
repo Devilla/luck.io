@@ -1,0 +1,82 @@
+Extracted game distribution parameters (indicative of off-chain control):
+
+edge: 0.01707621824239891
+max_multiplier: 50
+min_dollar_bet: 0.1
+max_dollar_bet: 10000
+max_dollar_gain: 250000
+bet_type: 
+frontend_type: native
+---
+edge: 0.02
+max_multiplier: 10000
+min_dollar_bet: 0.1
+max_dollar_bet: 10000
+max_dollar_gain: 5000000
+bet_type: 
+frontend_type: native
+---
+edge: 0.03866908768420241
+max_multiplier: 118.859
+min_dollar_bet: 0.1
+max_dollar_bet: 100000
+max_dollar_gain: 10000000
+bet_type: freespin_buy
+frontend_type: eslot
+---
+edge: 0.03900021844308199
+max_multiplier: 5000
+min_dollar_bet: 0.1
+max_dollar_bet: 1000
+max_dollar_gain: 10000000
+bet_type: main
+frontend_type: eslot
+---
+edge: 0.037000150381765295
+max_multiplier: 5000
+min_dollar_bet: 0.1
+max_dollar_bet: 1000
+max_dollar_gain: 10000000
+bet_type: main
+frontend_type: eslot
+---
+edge: 0.039081067690139415
+max_multiplier: 9106.2
+min_dollar_bet: 0.1
+max_dollar_bet: 1000
+max_dollar_gain: 10000000
+bet_type: main
+frontend_type: eslot
+---
+edge: 0.03799858875120743
+max_multiplier: 50
+min_dollar_bet: 0.1
+max_dollar_bet: 100000
+max_dollar_gain: 10000000
+bet_type: freespin_buy
+frontend_type: eslot
+---
+edge: 0.037998973019138904
+max_multiplier: 118.859
+min_dollar_bet: 0.1
+max_dollar_bet: 100000
+max_dollar_gain: 10000000
+bet_type: freespin_buy
+frontend_type: eslot
+---
+edge: 0.038250195331296255
+max_multiplier: 14236.8
+min_dollar_bet: 0.1
+max_dollar_bet: 1000
+max_dollar_gain: 10000000
+bet_type: main
+frontend_type: eslot
+---
+edge: 0.038023122362018213
+max_multiplier: 50
+min_dollar_bet: 0.1
+max_dollar_bet: 100000
+max_dollar_gain: 10000000
+bet_type: freespin_buy
+frontend_type: eslot
+---

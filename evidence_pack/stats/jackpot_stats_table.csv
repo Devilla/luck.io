@@ -1,0 +1,2 @@
+total_spins,expected_jackpot_odds,actual_jackpots,p-value
+5000,1000000,2,0.000012458411

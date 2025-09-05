@@ -1,0 +1,2 @@
+Provide Solscan links here (one per line), e.g.:
+https://solscan.io/tx/<jackpot_signature>

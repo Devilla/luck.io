@@ -1,0 +1,5 @@
+Component,Claimed,Reality,Screenshot/File
+RNG,Decentralized,Dev signer reuse,../rng_evidence/signer_usage1.png
+Game Logic,On-chain,Fully off-chain,../game_logic/contract_no_logic.png
+Jackpot,Vault,Admin wallet,../payouts/jackpot_tx1.png
+Audit,Full Security,Scope gaps,../audits/halborn_scope.png
