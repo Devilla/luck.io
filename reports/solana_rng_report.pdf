@@ -1,0 +1,219 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Length 3740 >>
+stream
+BT
+/F1 16 Tf
+1 0 0 1 40.00 742.00 Tm (Solana RNG / Oracle Evidence Report) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 726.00 Tm (Generated: 2025-09-07 13:01:36 UTC) Tj
+ET
+BT
+/F1 12 Tf
+1 0 0 1 40.00 706.00 Tm (1. Transaction Details \(Solscan reference\)) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 692.00 Tm (Solscan Link: https://solscan.io/tx/1111111111111111111111111111111111111111111111111111111111111111) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 678.00 Tm (Signature: 1111111111111111111111111111111111111111111111111111111111111111) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 664.00 Tm (Failed to fetch transaction via public RPC.) Tj
+ET
+BT
+/F1 12 Tf
+1 0 0 1 40.00 650.00 Tm (2. RNG Flow Visualization) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 644.00 Tm (RNG flow: User Click -> Off-chain Oracle -> On-chain Program -> Payout Wallet) Tj
+ET
+40.00 598.00 140.00 32.00 re
+S
+BT
+/F1 10 Tf
+1 0 0 1 70.00 611.00 Tm (User Click) Tj
+ET
+204.00 598.00 140.00 32.00 re
+S
+BT
+/F1 10 Tf
+1 0 0 1 234.00 611.00 Tm (Off-chain Oracle) Tj
+ET
+368.00 598.00 140.00 32.00 re
+S
+BT
+/F1 10 Tf
+1 0 0 1 398.00 611.00 Tm (On-chain Program) Tj
+ET
+532.00 598.00 140.00 32.00 re
+S
+BT
+/F1 10 Tf
+1 0 0 1 562.00 611.00 Tm (Payout Wallet) Tj
+ET
+1.00 w
+184.00 614.00 m 200.00 614.00 l S
+192.00 618.00 m 200.00 614.00 l 192.00 610.00 l h f
+1.00 w
+348.00 614.00 m 364.00 614.00 l S
+356.00 618.00 m 364.00 614.00 l 356.00 610.00 l h f
+1.00 w
+512.00 614.00 m 528.00 614.00 l S
+520.00 618.00 m 528.00 614.00 l 520.00 610.00 l h f
+BT
+/F1 12 Tf
+1 0 0 1 40.00 578.00 Tm (3. Jackpot Probability \(Poisson\)) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 572.00 Tm (Assumptions: spins=5000, jackpot odds=1-in-1,000,000. lambda = 0.005000) Tj
+ET
+1.00 w
+40.00 438.00 m 560.00 438.00 l S
+1.00 w
+40.00 438.00 m 40.00 558.00 l S
+BT
+/F1 8 Tf
+1 0 0 1 30.00 428.00 Tm (0) Tj
+ET
+BT
+/F1 8 Tf
+1 0 0 1 30.00 560.00 Tm (9.95e-01) Tj
+ET
+40.00 438.00 57.78 112.00 re
+S
+BT
+/F1 8 Tf
+1 0 0 1 66.89 426.00 Tm (0) Tj
+ET
+126.67 438.00 57.78 0.56 re
+S
+BT
+/F1 8 Tf
+1 0 0 1 153.56 426.00 Tm (1) Tj
+ET
+213.33 438.00 57.78 0.00 re
+B
+BT
+/F1 8 Tf
+1 0 0 1 240.22 426.00 Tm (2) Tj
+ET
+300.00 438.00 57.78 0.00 re
+S
+BT
+/F1 8 Tf
+1 0 0 1 326.89 426.00 Tm (3) Tj
+ET
+386.67 438.00 57.78 0.00 re
+S
+BT
+/F1 8 Tf
+1 0 0 1 413.56 426.00 Tm (4) Tj
+ET
+473.33 438.00 57.78 0.00 re
+S
+BT
+/F1 8 Tf
+1 0 0 1 500.22 426.00 Tm (5) Tj
+ET
+BT
+/F1 12 Tf
+1 0 0 1 40.00 418.00 Tm (4. Proov VRF Record & Details) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 412.00 Tm (Proov Link:) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 398.00 Tm (file:///workspace/README.md?balance_address=6kRQgeBFq3Qh32rP16cGz9gisfMUM6umFpPZVwkQx8Ez&nonce=43359) Tj
+ET
+40.00 370.00 530.00 16.00 re
+S
+40.00 370.00 160.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 374.00 Tm (Field) Tj
+ET
+200.00 370.00 370.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 204.00 374.00 Tm (Value) Tj
+ET
+40.00 354.00 160.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 358.00 Tm (source_url) Tj
+ET
+200.00 354.00 370.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 204.00 358.00 Tm (file:///workspace/README.md?balance_address=6kRQgeBFq3Qh32rP16cGz9gisfMUM6umFpPZVwkQx8Ez&nonce=43359) Tj
+ET
+40.00 338.00 160.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 44.00 342.00 Tm (error) Tj
+ET
+200.00 338.00 370.00 16.00 re
+S
+BT
+/F1 9 Tf
+1 0 0 1 204.00 342.00 Tm (<urlopen error [Errno 2] No such file or directory: '/workspace/README.md?balance_address=6kRQgeBFq3Qh32rP16cGz9gisfMUM6umFpPZVwkQx8Ez&nonce=43359'>) Tj
+ET
+BT
+/F1 12 Tf
+1 0 0 1 40.00 326.00 Tm (Notes) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 320.00 Tm (- Transaction details fetched from public Solana RPC \(jsonParsed\).) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 306.00 Tm (- RNG flow diagram illustrates off-chain oracle signing then on-chain posting/payout.) Tj
+ET
+BT
+/F1 10 Tf
+1 0 0 1 40.00 292.00 Tm (- Poisson chart shows jackpot distribution under stated assumptions.) Tj
+ET
+endstream
+endobj
+3 0 obj
+<< /Type /Page /Parent 0 0 R /MediaBox [0 0 612 792] /Contents 2 0 R /Resources << /Font << /F1 1 0 R >> >> >>
+endobj
+4 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+5 0 obj
+<< /Type /Catalog /Pages 4 0 R >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000015 00000 n 
+0000000085 00000 n 
+0000003876 00000 n 
+0000004002 00000 n 
+0000004059 00000 n 
+trailer
+<< /Size 6 /Root 5 0 R >>
+startxref
+4108
+%%EOF
