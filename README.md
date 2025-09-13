@@ -1,4 +1,4 @@
-# Lucky.io - Proov Network Analytics
+# Luck.io - Proov Network Analytics
 
 A comprehensive Next.js application for analyzing and verifying bets on the Proov Network gaming platform. This application provides real-time analytics, bet verification, and detailed insights into gaming data.
 
