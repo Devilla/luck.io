@@ -4,163 +4,51 @@ import json
 import math
 import os
 import sys
+import time
 from datetime import datetime, timezone
+from io import BytesIO
 from typing import Any, Dict, List, Optional, Tuple
 
-from urllib import request as urlrequest
-from urllib import error as urlerror
-from urllib.parse import urlparse, parse_qs
+import numpy as np
+import pandas as pd
+import requests
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import LETTER
+from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
+from reportlab.lib.units import inch
+from reportlab.pdfbase.pdfmetrics import stringWidth
+from reportlab.platypus import (
+	SimpleDocTemplate,
+	Paragraph,
+	Spacer,
+	Table,
+	TableStyle,
+	Image as RLImage,
+)
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 
-# -----------------------------
-# Minimal PDF builder (standard library only)
-# -----------------------------
-
-class PDFBuilder:
-	def __init__(self, width: int = 612, height: int = 792):
-		self.width = width
-		self.height = height
-		self.objects: List[bytes] = []
-		self.offsets: List[int] = []
-		self.font_obj_num: Optional[int] = None
-		self.content_streams: List[bytes] = []
-
-	def add_object(self, obj_bytes: bytes) -> int:
-		self.objects.append(obj_bytes)
-		return len(self.objects)  # 1-based index
-
-	def escape_text(self, s: str) -> str:
-		return s.replace('\\', r'\\').replace('(', r'\(').replace(')', r'\)')
-
-	def begin_text(self, font_size: int = 10) -> bytes:
-		parts = [b"BT\n", f"/F1 {font_size} Tf\n".encode("ascii")]
-		return b"".join(parts)
-
-	def end_text(self) -> bytes:
-		return b"ET\n"
-
-	def text_at(self, x: float, y: float, text: str) -> bytes:
-		et = self.escape_text(text)
-		return f"1 0 0 1 {x:.2f} {y:.2f} Tm ({et}) Tj\n".encode("ascii")
-
-	def draw_rect(self, x: float, y: float, w: float, h: float, stroke: bool = True, fill: bool = False, gray: Optional[float] = None) -> bytes:
-		parts: List[bytes] = []
-		if gray is not None:
-			parts.append(f"{gray:.3f} g\n{gray:.3f} G\n".encode("ascii"))
-		parts.append(f"{x:.2f} {y:.2f} {w:.2f} {h:.2f} re\n".encode("ascii"))
-		if fill and stroke:
-			parts.append(b"B\n")
-		elif fill:
-			parts.append(b"f\n")
-		elif stroke:
-			parts.append(b"S\n")
-		return b"".join(parts)
-
-	def draw_line(self, x1: float, y1: float, x2: float, y2: float, width: float = 1.0) -> bytes:
-		return f"{width:.2f} w\n{x1:.2f} {y1:.2f} m {x2:.2f} {y2:.2f} l S\n".encode("ascii")
-
-	def draw_arrow(self, x1: float, y1: float, x2: float, y2: float) -> bytes:
-		# Simple straight line with triangular head at end
-		parts = [self.draw_line(x1, y1, x2, y2, width=1.0)]
-		# Arrow head
-		dx, dy = x2 - x1, y2 - y1
-		length = max((dx*dx + dy*dy) ** 0.5, 1.0)
-		u_x, u_y = dx / length, dy / length
-		# Perp vector
-		p_x, p_y = -u_y, u_x
-		head_len = 8.0
-		head_w = 4.0
-		bx = x2 - u_x * head_len
-		by = y2 - u_y * head_len
-		p1x, p1y = bx + p_x * head_w, by + p_y * head_w
-		p2x, p2y = bx - p_x * head_w, by - p_y * head_w
-		parts.append(f"{p1x:.2f} {p1y:.2f} m {x2:.2f} {y2:.2f} l {p2x:.2f} {p2y:.2f} l h f\n".encode("ascii"))
-		return b"".join(parts)
-
-	def add_content(self, content: bytes) -> None:
-		self.content_streams.append(content)
-
-	def build(self) -> bytes:
-		# Font object (Helvetica)
-		font_obj = b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>"
-		font_num = self.add_object(font_obj)
-		self.font_obj_num = font_num
-
-		# Page content object
-		content_data = b"".join(self.content_streams)
-		content_stream = b"<< /Length " + str(len(content_data)).encode("ascii") + b" >>\nstream\n" + content_data + b"endstream"
-		content_num = self.add_object(content_stream)
-
-		# Page object
-		page_obj = (
-			b"<< /Type /Page /Parent 0 0 R /MediaBox [0 0 "
-			+ str(self.width).encode("ascii")
-			+ b" "
-			+ str(self.height).encode("ascii")
-			+ b"] /Contents "
-			+ f"{content_num} 0 R".encode("ascii")
-			+ b" /Resources << /Font << /F1 "
-			+ f"{font_num} 0 R".encode("ascii")
-			+ b" >> >> >>"
-		)
-		page_num = self.add_object(page_obj)
-
-		# Pages object
-		pages_obj = b"<< /Type /Pages /Kids [" + f"{page_num} 0 R".encode("ascii") + b"] /Count 1 >>"
-		pages_num = self.add_object(pages_obj)
-
-		# Catalog object
-		catalog_obj = b"<< /Type /Catalog /Pages " + f"{pages_num} 0 R".encode("ascii") + b" >>"
-		catalog_num = self.add_object(catalog_obj)
-
-		# Assemble file
-		output = bytearray()
-		output.extend(b"%PDF-1.4\n%\xe2\xe3\xcf\xd3\n")
-		self.offsets = [0]  # object 0 is the free head
-		for i, obj in enumerate(self.objects, start=1):
-			self.offsets.append(len(output))
-			output.extend(f"{i} 0 obj\n".encode("ascii"))
-			output.extend(obj)
-			output.extend(b"\nendobj\n")
-
-		xref_offset = len(output)
-		size = len(self.objects) + 1
-		output.extend(b"xref\n")
-		output.extend(f"0 {size}\n".encode("ascii"))
-		# object 0
-		output.extend(b"0000000000 65535 f \n")
-		for off in self.offsets[1:]:
-			output.extend(f"{off:010d} 00000 n \n".encode("ascii"))
-
-		trailer = b"<< /Size " + str(size).encode("ascii") + b" /Root " + f"{catalog_num} 0 R".encode("ascii") + b" >>"
-		output.extend(b"trailer\n")
-		output.extend(trailer + b"\n")
-		output.extend(b"startxref\n")
-		output.extend(f"{xref_offset}\n".encode("ascii"))
-		output.extend(b"%%EOF\n")
-		return bytes(output)
-
-# -----------------------------
-# Fetch helpers
-# -----------------------------
+try:
+	import networkx as nx
+except Exception:
+	nx = None
 
 PUBLIC_SOLANA_RPC = os.environ.get("SOLANA_RPC_URL", "https://api.mainnet-beta.solana.com")
 
 
-def http_post_json(url: str, payload: Dict[str, Any], timeout: int = 25) -> Dict[str, Any]:
-	data = json.dumps(payload).encode("utf-8")
-	req = urlrequest.Request(url, data=data, headers={"Content-Type": "application/json"}, method="POST")
-	with urlrequest.urlopen(req, timeout=timeout) as resp:
-		resp_bytes = resp.read()
-		return json.loads(resp_bytes.decode("utf-8"))
-
-
-def http_get_text(url: str, timeout: int = 25) -> str:
-	req = urlrequest.Request(url, method="GET")
-	with urlrequest.urlopen(req, timeout=timeout) as resp:
-		return resp.read().decode("utf-8", errors="replace")
+def parse_args() -> argparse.Namespace:
+	parser = argparse.ArgumentParser(description="Generate a Solana RNG/VRF evidence PDF report.")
+	parser.add_argument("--tx-url", required=True, help="Solscan transaction URL, e.g., https://solscan.io/tx/<signature>")
+	parser.add_argument("--proov-url", required=True, help="Proov VRF record URL")
+	parser.add_argument("--output", default="/workspace/reports/solana_rng_report.pdf", help="Output PDF path")
+	parser.add_argument("--spins", type=int, default=5000, help="Number of spins/plays for probability chart")
+	parser.add_argument("--jackpot_odds", type=float, default=1_000_000.0, help="Odds denominator for jackpot (e.g., 1_000_000 for 1-in-1M)")
+	return parser.parse_args()
 
 
 def extract_signature_from_solscan_url(url: str) -> Optional[str]:
+	# Expected formats: https://solscan.io/tx/<sig> or .../tx/<sig>?cluster=mainnet
 	try:
 		if "/tx/" not in url:
 			return None
@@ -173,7 +61,9 @@ def extract_signature_from_solscan_url(url: str) -> Optional[str]:
 
 def solana_rpc_request(method: str, params: Any) -> Dict[str, Any]:
 	payload = {"jsonrpc": "2.0", "id": 1, "method": method, "params": params}
-	return http_post_json(PUBLIC_SOLANA_RPC, payload)
+	resp = requests.post(PUBLIC_SOLANA_RPC, json=payload, timeout=25)
+	resp.raise_for_status()
+	return resp.json()
 
 
 def fetch_transaction(signature: str) -> Tuple[Optional[Dict[str, Any]], Optional[str]]:
@@ -198,27 +88,15 @@ def fetch_signature_status(signature: str) -> Optional[Dict[str, Any]]:
 		return None
 
 
-def fetch_proov_details(proov_url: str) -> Dict[str, Any]:
-	info: Dict[str, Any] = {"source_url": proov_url}
-	try:
-		text = http_get_text(proov_url)
-		info["http_status"] = 200
-		q = parse_qs(urlparse(proov_url).query)
-		info["balance_address"] = q.get("balance_address", [None])[0]
-		info["nonce"] = q.get("nonce", [None])[0]
-		info["page_contains_vrf_terms"] = ("\"proof\"" in text) or ("\"vrf\"" in text)
-	except Exception as e:
-		info["error"] = str(e)
-	return info
-
-# -----------------------------
-# Rendering helpers
-# -----------------------------
-
-def human_amount(lamports: Optional[int]) -> str:
-	if lamports is None:
-		return "-"
-	return f"{lamports / 1_000_000_000:.9f} SOL"
+def safe_get(dct: Dict[str, Any], path: List[str], default: Any = None) -> Any:
+	cur = dct
+	for key in path:
+		if not isinstance(cur, dict):
+			return default
+		cur = cur.get(key)
+		if cur is None:
+			return default
+	return cur
 
 
 def format_ts(ts: Optional[int]) -> str:
@@ -231,115 +109,222 @@ def format_ts(ts: Optional[int]) -> str:
 		return str(ts)
 
 
-def wrap_text(text: str, max_chars: int) -> List[str]:
-	words = text.split()
-	lines: List[str] = []
-	cur: List[str] = []
-	for w in words:
-		if sum(len(x) for x in cur) + len(cur) - 1 + len(w) + (1 if cur else 0) <= max_chars:
-			cur.append(w)
-		else:
-			if cur:
-				lines.append(" ".join(cur))
-			cur = [w]
-	if cur:
-		lines.append(" ".join(cur))
-	return lines
+def ensure_dir(path: str) -> None:
+	os.makedirs(os.path.dirname(path), exist_ok=True)
 
 
-def draw_heading(pdf: PDFBuilder, x: float, y: float, text: str, size: int = 14) -> float:
-	content = pdf.begin_text(size) + pdf.text_at(x, y, text) + pdf.end_text()
-	pdf.add_content(content)
-	return y
+def draw_rng_flow_diagram(output_path: str) -> None:
+	plt.figure(figsize=(7, 4))
+	if nx is None:
+		# Fallback simple diagram using matplotlib only
+		nodes = ["User Click", "Off-chain Oracle", "On-chain Program", "Payout Wallet"]
+		positions = {
+			"User Click": (0.1, 0.5),
+			"Off-chain Oracle": (0.4, 0.5),
+			"On-chain Program": (0.7, 0.5),
+			"Payout Wallet": (0.9, 0.5),
+		}
+		for name, (x, y) in positions.items():
+			plt.scatter([x], [y], s=800, c="#87CEFA")
+			plt.text(x, y, name, ha="center", va="center", fontsize=10)
+			
+		# arrows
+		arrowprops = dict(arrowstyle="->", color="black")
+		plt.annotate("", xy=positions["Off-chain Oracle"], xytext=positions["User Click"], arrowprops=arrowprops)
+		plt.annotate("", xy=positions["On-chain Program"], xytext=positions["Off-chain Oracle"], arrowprops=arrowprops)
+		plt.annotate("", xy=positions["Payout Wallet"], xytext=positions["On-chain Program"], arrowprops=arrowprops)
+		plt.axis("off")
+		plt.tight_layout()
+		plt.savefig(output_path, dpi=200)
+		plt.close()
+		return
+
+	G = nx.DiGraph()
+	nodes = [
+		("User Click", {"color": "#87CEFA"}),
+		("Off-chain Oracle", {"color": "#FFD700"}),
+		("On-chain Program", {"color": "#98FB98"}),
+		("Payout Wallet", {"color": "#FFB6C1"}),
+	]
+	G.add_nodes_from([n for n, _ in nodes])
+	G.add_edges_from([
+		("User Click", "Off-chain Oracle"),
+		("Off-chain Oracle", "On-chain Program"),
+		("On-chain Program", "Payout Wallet"),
+	])
+	pos = nx.spring_layout(G, seed=42)
+	node_colors = [attrs["color"] for _, attrs in nodes]
+	nx.draw_networkx_nodes(G, pos, node_color=node_colors, node_size=1500)
+	nx.draw_networkx_labels(G, pos, font_size=9)
+	nx.draw_networkx_edges(G, pos, arrows=True, arrowstyle="->")
+	plt.axis("off")
+	plt.tight_layout()
+	plt.savefig(output_path, dpi=200)
+	plt.close()
 
 
-def draw_paragraph(pdf: PDFBuilder, x: float, y: float, text: str, size: int = 10, max_width_chars: int = 100, line_height: float = 14) -> float:
-	for line in wrap_text(text, max_width_chars):
-		content = pdf.begin_text(size) + pdf.text_at(x, y, line) + pdf.end_text()
-		pdf.add_content(content)
-		y -= line_height
-	return y
-
-
-def draw_table(pdf: PDFBuilder, x: float, y: float, rows: List[List[str]], col_widths: List[float], row_height: float = 16) -> float:
-	# header background
-	if rows:
-		pdf.add_content(pdf.draw_rect(x, y - row_height + 2, sum(col_widths), row_height, stroke=True, fill=False))
-	cur_y = y
-	for r, row in enumerate(rows):
-		cur_x = x
-		for c, cell in enumerate(row):
-			pdf.add_content(pdf.draw_rect(cur_x, cur_y - row_height + 2, col_widths[c], row_height, stroke=True, fill=False))
-			content = pdf.begin_text(9) + pdf.text_at(cur_x + 4, cur_y - row_height + 6, cell) + pdf.end_text()
-			pdf.add_content(content)
-			cur_x += col_widths[c]
-		cur_y -= row_height
-	return cur_y
-
-
-def draw_rng_flow(pdf: PDFBuilder, x: float, y: float) -> float:
-	# Draw four boxes and arrows
-	w = 140
-	h = 32
-	gap = 24
-	labels = ["User Click", "Off-chain Oracle", "On-chain Program", "Payout Wallet"]
-	cur_x = x
-	for label in labels:
-		pdf.add_content(pdf.draw_rect(cur_x, y - h, w, h, stroke=True, fill=False))
-		pdf.add_content(pdf.begin_text(10) + pdf.text_at(cur_x + w/2 - 40, y - h/2 - 3, label) + pdf.end_text())
-		cur_x += w + gap
-	# arrows
-	ax = x + w
-	for i in range(3):
-		start_x = x + (w + gap) * i + w
-		end_x = start_x + gap
-		pdf.add_content(pdf.draw_arrow(start_x + 4, y - h/2, end_x - 4, y - h/2))
-	return y - h - 20
-
-
-def draw_poisson(pdf: PDFBuilder, x: float, y: float, spins: int, jackpot_odds: float, highlight_k: int = 2) -> float:
+def plot_poisson_distribution(spins: int, jackpot_odds: float, highlight_k: int, output_path: str) -> None:
 	lam = spins / jackpot_odds
 	k_values = list(range(0, max(6, highlight_k + 3)))
 	probs = [math.exp(-lam) * (lam ** k) / math.factorial(k) for k in k_values]
-	max_p = max(probs) if probs else 1.0
-	chart_w = 520
-	chart_h = 120
-	# axes
-	pdf.add_content(pdf.draw_line(x, y - chart_h, x + chart_w, y - chart_h, 1))
-	pdf.add_content(pdf.draw_line(x, y - chart_h, x, y, 1))
-	pdf.add_content(pdf.begin_text(8) + pdf.text_at(x - 10, y - chart_h - 10, "0") + pdf.end_text())
-	pdf.add_content(pdf.begin_text(8) + pdf.text_at(x - 10, y + 2, f"{max_p:.2e}") + pdf.end_text())
-	# bars
-	if probs:
-		bar_w = chart_w / (len(probs) * 1.5)
-		for i, p in enumerate(probs):
-			h = 0 if max_p == 0 else (p / max_p) * (chart_h - 8)
-			bx = x + i * (bar_w * 1.5)
-			pdf.add_content(pdf.draw_rect(bx, y - chart_h, bar_w, h, stroke=True, fill=(i == highlight_k)))
-			pdf.add_content(pdf.begin_text(8) + pdf.text_at(bx + bar_w/2 - 2, y - chart_h - 12, str(i)) + pdf.end_text())
-	return y - chart_h - 20
 
-# -----------------------------
-# Main report
-# -----------------------------
-
-def parse_args() -> argparse.Namespace:
-	parser = argparse.ArgumentParser(description="Generate a Solana RNG/VRF evidence PDF report.")
-	parser.add_argument("--tx-url", required=True, help="Solscan transaction URL, e.g., https://solscan.io/tx/<signature>")
-	parser.add_argument("--proov-url", required=True, help="Proov VRF record URL")
-	parser.add_argument("--output", default="/workspace/reports/solana_rng_report.pdf", help="Output PDF path")
-	parser.add_argument("--spins", type=int, default=5000, help="Number of spins/plays for probability chart")
-	parser.add_argument("--jackpot_odds", type=float, default=1_000_000.0, help="Odds denominator for jackpot (e.g., 1_000_000 for 1-in-1M)")
-	return parser.parse_args()
+	plt.figure(figsize=(7, 4))
+	plt.bar(k_values, probs, color="#8ecae6", label=f"Poisson(λ={lam:.6f})")
+	if highlight_k < len(k_values):
+		plt.scatter([highlight_k], [probs[highlight_k]], color="red", zorder=5, label=f"Observed k={highlight_k}")
+	plt.xlabel("Number of jackpots in spins")
+	plt.ylabel("Probability")
+	plt.title(f"Poisson distribution for jackpots: spins={spins}, odds=1-in-{int(jackpot_odds):,}")
+	plt.legend()
+	plt.tight_layout()
+	plt.savefig(output_path, dpi=200)
+	plt.close()
 
 
-def ensure_dir(path: str) -> None:
-	os.makedirs(os.path.dirname(path), exist_ok=True)
+def fetch_proov_details(proov_url: str) -> Dict[str, Any]:
+	info: Dict[str, Any] = {"source_url": proov_url}
+	try:
+		resp = requests.get(proov_url, timeout=20)
+		info["http_status"] = resp.status_code
+		text = resp.text
+		# crude attempt to extract basic data if present in JSON in the page
+		if "balance_address" in proov_url:
+			try:
+				from urllib.parse import urlparse, parse_qs
+				q = parse_qs(urlparse(proov_url).query)
+				info["balance_address"] = q.get("balance_address", [None])[0]
+				info["nonce"] = q.get("nonce", [None])[0]
+			except Exception:
+				pass
+		# heuristic: sometimes pages embed JSON; attempt to find braces
+		if "\"proof\"" in text or "\"vrf\"" in text:
+			info["page_contains_vrf_terms"] = True
+		else:
+			info["page_contains_vrf_terms"] = False
+	except Exception as e:
+		info["error"] = str(e)
+	return info
+
+
+def human_amount(lamports: Optional[int]) -> str:
+	if lamports is None:
+		return "-"
+	return f"{lamports / 1_000_000_000:.9f} SOL"
+
+
+def build_transaction_tables(tx: Dict[str, Any]) -> List[Any]:
+	story: List[Any] = []
+
+	block_time = tx.get("blockTime")
+	slot = tx.get("slot")
+	sig = tx.get("transaction", {}).get("signatures", ["-"])[0]
+	basic_data = [
+		["Signature", sig],
+		["Slot", str(slot)],
+		["Block time (UTC)", format_ts(block_time)],
+	]
+	basic_table = Table(basic_data, hAlign="LEFT")
+	basic_table.setStyle(TableStyle([
+		("BACKGROUND", (0, 0), (0, -1), colors.lightgrey),
+		("BOX", (0,0), (-1,-1), 0.5, colors.black),
+		("INNERGRID", (0,0), (-1,-1), 0.25, colors.grey),
+	]))
+	story.append(basic_table)
+	story.append(Spacer(1, 0.15 * inch))
+
+	meta = tx.get("meta", {})
+	pre_bal = meta.get("preBalances", [])
+	post_bal = meta.get("postBalances", [])
+	acct_keys = tx.get("transaction", {}).get("message", {}).get("accountKeys", [])
+
+	acc_rows = [["Index", "Address", "Signer", "Writable", "Pre SOL", "Post SOL"]]
+	for idx, acct in enumerate(acct_keys):
+		addr = acct.get("pubkey") if isinstance(acct, dict) else str(acct)
+		is_signer = acct.get("signer") if isinstance(acct, dict) else "?"
+		is_writable = acct.get("writable") if isinstance(acct, dict) else "?"
+		pre = pre_bal[idx] if idx < len(pre_bal) else None
+		post = post_bal[idx] if idx < len(post_bal) else None
+		acc_rows.append([
+			str(idx),
+			addr,
+			str(is_signer),
+			str(is_writable),
+			human_amount(pre),
+			human_amount(post),
+		])
+	acc_table = Table(acc_rows, repeatRows=1, hAlign="LEFT")
+	acc_table.setStyle(TableStyle([
+		("BACKGROUND", (0, 0), (-1, 0), colors.lightgrey),
+		("FONTSIZE", (0, 0), (-1, 0), 9),
+		("BOX", (0,0), (-1,-1), 0.5, colors.black),
+		("INNERGRID", (0,0), (-1,-1), 0.25, colors.grey),
+		("FONTSIZE", (0,1), (-1,-1), 8),
+		("LEADING", (0,1), (-1,-1), 9),
+	]))
+	story.append(Paragraph("Accounts", getSampleStyleSheet()["Heading4"]))
+	story.append(acc_table)
+	story.append(Spacer(1, 0.15 * inch))
+
+	instructions = safe_get(tx, ["transaction", "message", "instructions"], []) or []
+	ins_rows = [["#", "Program", "Type", "Accounts count"]]
+	for i, ins in enumerate(instructions):
+		program_id = ins.get("programId") or ins.get("programIdIndex")
+		type_name = ins.get("parsed", {}).get("type") if isinstance(ins.get("parsed"), dict) else "-"
+		accounts_count = len(ins.get("accounts", []))
+		ins_rows.append([str(i), str(program_id), type_name, str(accounts_count)])
+	ins_table = Table(ins_rows, repeatRows=1, hAlign="LEFT")
+	ins_table.setStyle(TableStyle([
+		("BACKGROUND", (0, 0), (-1, 0), colors.lightgrey),
+		("BOX", (0,0), (-1,-1), 0.5, colors.black),
+		("INNERGRID", (0,0), (-1,-1), 0.25, colors.grey),
+		("FONTSIZE", (0,0), (-1,-1), 8),
+	]))
+	story.append(Paragraph("Top-level Instructions", getSampleStyleSheet()["Heading4"]))
+	story.append(ins_table)
+	story.append(Spacer(1, 0.1 * inch))
+
+	log_messages = safe_get(tx, ["meta", "logMessages"], []) or []
+	if log_messages:
+		log_rows = [["Log index", "Message"]]
+		for i, msg in enumerate(log_messages):
+			log_rows.append([str(i), msg])
+		log_table = Table(log_rows, repeatRows=1, hAlign="LEFT", colWidths=[0.8*inch, 5.7*inch])
+		log_table.setStyle(TableStyle([
+			("BACKGROUND", (0, 0), (-1, 0), colors.lightgrey),
+			("BOX", (0,0), (-1,-1), 0.5, colors.black),
+			("INNERGRID", (0,0), (-1,-1), 0.25, colors.grey),
+			("FONTSIZE", (0,0), (-1,-1), 7),
+		]))
+		story.append(Paragraph("Program Logs", getSampleStyleSheet()["Heading4"]))
+		story.append(log_table)
+		story.append(Spacer(1, 0.1 * inch))
+
+	return story
+
+
+def add_image(story: List[Any], image_path: str, caption: str, max_width: float = 6.5 * inch) -> None:
+	if not os.path.exists(image_path):
+		return
+	img = RLImage(image_path)
+	# Scale down maintaining aspect ratio
+	w, h = img.wrap(0, 0)
+	if w > max_width:
+		scale = max_width / w
+		img._argW = w * scale
+		img._argH = h * scale
+	story.append(img)
+	story.append(Paragraph(caption, ParagraphStyle(name="Caption", fontSize=8, textColor=colors.grey)))
+	story.append(Spacer(1, 0.1 * inch))
 
 
 def main() -> None:
 	args = parse_args()
 	ensure_dir(args.output)
+
+	styles = getSampleStyleSheet()
+	style_normal = styles["BodyText"]
+	style_h2 = styles["Heading2"]
+	style_h3 = styles["Heading3"]
 
 	signature = extract_signature_from_solscan_url(args.tx_url)
 	if not signature:
@@ -348,96 +333,93 @@ def main() -> None:
 
 	tx, err = fetch_transaction(signature)
 	status = fetch_signature_status(signature)
+
+	assets_dir = "/workspace/assets"
+	os.makedirs(assets_dir, exist_ok=True)
+	rng_diagram_path = os.path.join(assets_dir, "rng_flow.png")
+	poisson_path = os.path.join(assets_dir, "poisson.png")
+
+	draw_rng_flow_diagram(rng_diagram_path)
+	# Assume observed k=2 jackpots as per claim context
+	plot_poisson_distribution(args.spins, args.jackpot_odds, highlight_k=2, output_path=poisson_path)
+
 	proov_info = fetch_proov_details(args.proov_url)
 
-	pdf = PDFBuilder()
-	margin_left = 40
-	y = pdf.height - 50
+	doc = SimpleDocTemplate(
+		args.output,
+		pagesize=LETTER,
+		leftMargin=0.7 * inch,
+		rightMargin=0.7 * inch,
+		topMargin=0.7 * inch,
+		bottomMargin=0.7 * inch,
+	)
+	story: List[Any] = []
 
-	# Title and meta
-	y = draw_heading(pdf, margin_left, y, "Solana RNG / Oracle Evidence Report", size=16) - 16
-	y = draw_paragraph(pdf, margin_left, y, datetime.now(timezone.utc).strftime("Generated: %Y-%m-%d %H:%M:%S %Z"), size=10)
-	y -= 6
+	story.append(Paragraph("Solana RNG / Oracle Evidence Report", style_h2))
+	story.append(Paragraph(datetime.now(timezone.utc).strftime("Generated: %Y-%m-%d %H:%M:%S %Z"), style_normal))
+	story.append(Spacer(1, 0.2 * inch))
 
-	# Section 1: Transaction details
-	y = draw_heading(pdf, margin_left, y, "1. Transaction Details (Solscan reference)", size=12) - 14
-	y = draw_paragraph(pdf, margin_left, y, f"Solscan Link: {args.tx_url}")
-	y = draw_paragraph(pdf, margin_left, y, f"Signature: {signature}")
-	if status is not None:
-		y = draw_paragraph(pdf, margin_left, y, "Signature Status (RPC):", size=11)
-		status_str = json.dumps(status, ensure_ascii=False)
-		y = draw_paragraph(pdf, margin_left, y, status_str, max_width_chars=110)
+	story.append(Paragraph("1. Transaction Details (Solscan reference)", style_h3))
+	story.append(Paragraph(f"Solscan Link: <a href='{args.tx_url}' color='blue'>{args.tx_url}</a>", style_normal))
+	story.append(Paragraph(f"Signature: {signature}", style_normal))
+	if status:
+		conf_str = json.dumps(status, ensure_ascii=False)
+		story.append(Paragraph("Signature Status (RPC)", style_h3))
+		story.append(Paragraph(conf_str, style_normal))
+		story.append(Spacer(1, 0.1 * inch))
 
 	if tx is None:
-		y = draw_paragraph(pdf, margin_left, y, "Failed to fetch transaction via public RPC.")
+		story.append(Paragraph("Failed to fetch transaction via public RPC.", style_normal))
 		if err:
-			y = draw_paragraph(pdf, margin_left, y, f"Error: {err}")
+			story.append(Paragraph(f"Error: {err}", style_normal))
 	else:
-		block_time = tx.get("blockTime")
-		slot = tx.get("slot")
-		rows = [
-			["Field", "Value"],
-			["Slot", str(slot)],
-			["Block time (UTC)", format_ts(block_time)],
-		]
-		y = draw_table(pdf, margin_left, y, rows, [150, 380]) - 10
-		# Accounts table (truncated to first 10 for page space)
-		acct_keys = tx.get("transaction", {}).get("message", {}).get("accountKeys", [])
-		pre_bal = tx.get("meta", {}).get("preBalances", [])
-		post_bal = tx.get("meta", {}).get("postBalances", [])
-		acc_rows = [["Index", "Address", "Signer", "Writable", "Pre SOL", "Post SOL"]]
-		for idx, acct in enumerate(acct_keys[:10]):
-			addr = acct.get("pubkey") if isinstance(acct, dict) else str(acct)
-			is_signer = acct.get("signer") if isinstance(acct, dict) else "?"
-			is_writable = acct.get("writable") if isinstance(acct, dict) else "?"
-			pre = pre_bal[idx] if idx < len(pre_bal) else None
-			post = post_bal[idx] if idx < len(post_bal) else None
-			acc_rows.append([
-				str(idx),
-				addr,
-				str(is_signer),
-				str(is_writable),
-				human_amount(pre),
-				human_amount(post),
-			])
-		y = draw_table(pdf, margin_left, y, acc_rows, [40, 240, 60, 60, 100, 100]) - 10
+		story.extend(build_transaction_tables(tx))
 
-		# Logs (first 12 lines)
-		logs = tx.get("meta", {}).get("logMessages", []) or []
-		if logs:
-			y = draw_paragraph(pdf, margin_left, y, "Program Logs:", size=11)
-			for i, msg in enumerate(logs[:12]):
-				y = draw_paragraph(pdf, margin_left, y, f"{i}: {msg}", max_width_chars=110)
+	story.append(Spacer(1, 0.2 * inch))
+	story.append(Paragraph("2. RNG Flow Visualization", style_h3))
+	add_image(story, rng_diagram_path, "RNG flow: User Click → Off-chain Oracle → On-chain Program → Payout Wallet")
 
-	# Section 2: RNG flow diagram
-	y = draw_heading(pdf, margin_left, y, "2. RNG Flow Visualization", size=12) - 6
-	y = draw_paragraph(pdf, margin_left, y, "RNG flow: User Click -> Off-chain Oracle -> On-chain Program -> Payout Wallet")
-	y = draw_rng_flow(pdf, margin_left, y)
+	story.append(Spacer(1, 0.2 * inch))
+	story.append(Paragraph("3. Jackpot Probability (Poisson)", style_h3))
+	story.append(Paragraph(
+		f"Assumptions: spins={args.spins}, jackpot odds=1-in-{int(args.jackpot_odds):,}. "
+		f"λ = spins/odds = {args.spins/args.jackpot_odds:.6f}",
+		style_normal,
+	))
+	add_image(story, poisson_path, "Poisson probability mass function with observed k=2 highlighted")
 
-	# Section 3: Poisson chart
-	y = draw_heading(pdf, margin_left, y, "3. Jackpot Probability (Poisson)", size=12) - 6
-	lam = args.spins / args.jackpot_odds
-	y = draw_paragraph(pdf, margin_left, y, f"Assumptions: spins={args.spins}, jackpot odds=1-in-{int(args.jackpot_odds):,}. lambda = {lam:.6f}")
-	y = draw_poisson(pdf, margin_left, y, args.spins, args.jackpot_odds, highlight_k=2)
-
-	# Section 4: Proov VRF details
-	y = draw_heading(pdf, margin_left, y, "4. Proov VRF Record & Details", size=12) - 6
-	y = draw_paragraph(pdf, margin_left, y, f"Proov Link: {args.proov_url}")
+	story.append(Spacer(1, 0.2 * inch))
+	story.append(Paragraph("4. Proov VRF Record & Details", style_h3))
+	story.append(Paragraph(f"Proov Link: <a href='{args.proov_url}' color='blue'>{args.proov_url}</a>", style_normal))
 	if proov_info:
 		rows = [["Field", "Value"]]
-		for k, v in proov_info.items():
-			rows.append([str(k), str(v)])
-		y = draw_table(pdf, margin_left, y, rows[:12], [160, 370]) - 10
+		for key, value in proov_info.items():
+			rows.append([str(key), str(value)])
+		pt = Table(rows, repeatRows=1, hAlign="LEFT")
+		pt.setStyle(TableStyle([
+			("BACKGROUND", (0, 0), (-1, 0), colors.lightgrey),
+			("BOX", (0,0), (-1,-1), 0.5, colors.black),
+			("INNERGRID", (0,0), (-1,-1), 0.25, colors.grey),
+			("FONTSIZE", (0,0), (-1,-1), 8),
+		]))
+		story.append(pt)
 
-	# Notes
-	y = draw_heading(pdf, margin_left, y, "Notes", size=12) - 6
-	y = draw_paragraph(pdf, margin_left, y, "- Transaction details fetched from public Solana RPC (jsonParsed).", max_width_chars=110)
-	y = draw_paragraph(pdf, margin_left, y, "- RNG flow diagram illustrates off-chain oracle signing then on-chain posting/payout.", max_width_chars=110)
-	y = draw_paragraph(pdf, margin_left, y, "- Poisson chart shows jackpot distribution under stated assumptions.", max_width_chars=110)
+	story.append(Spacer(1, 0.2 * inch))
+	story.append(Paragraph("Notes", style_h3))
+	story.append(Paragraph(
+		"- Transaction details are fetched from the public Solana RPC (jsonParsed) and paired with the provided Solscan link for reference.",
+		style_normal,
+	))
+	story.append(Paragraph(
+		"- RNG flow diagram is illustrative of off-chain oracle signing followed by on-chain posting/payout.",
+		style_normal,
+	))
+	story.append(Paragraph(
+		"- Poisson chart provides the probability distribution for jackpots under stated assumptions; adjust parameters if needed.",
+		style_normal,
+	))
 
-	pdf_bytes = pdf.build()
-	with open(args.output, "wb") as f:
-		f.write(pdf_bytes)
+	doc.build(story)
 	print(f"Report generated at: {args.output}")
 
 

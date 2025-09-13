@@ -1,0 +1,76 @@
+Code snippets indicating no binding to on-chain block height/seed/bet id:
+
+    }
+  }
+
+  static async getSolanaSigners(): Promise<string[]> {
+    try {
+      const response = await api.get(`${PROOV_BASE_URL}/solana/signers`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching Solana signers:', error);
+      throw error;
+
+---
+
+      const payoutDistribution = await this.getPayoutDistribution(betData.distribution_id);
+      
+      // Step 6: Get Solana signers
+      const signers = await this.getSolanaSigners();
+      
+      // Verification Step 1: Check login signature
+      verificationSteps.push({
+        step: 1,
+        description: "Check that the login message (containing authentication key) is signed by wallet",
+        result: true, // This would require actual signature verification
+
+---
+
+      });
+
+      // Verification Step 4: Check payout calculation
+      const simulatedPayout = this.simulateBetPayout(betData, payoutDistribution);
+      verificationSteps.push({
+        step: 4,
+        description: "Check that the bet's payout is correct",
+        result: Math.abs(simulatedPayout - betData.raw_win) < 1000, // Allow small rounding differences
+        data: { 
+          expected: simulatedPayout, 
+
+---
+
+      });
+
+      // Generate random data for simulation
+      const randomInt = Math.floor(Math.random() * 1000000000000000000);
+      const randomFloat = randomInt / 1000000000000000000;
+
+      return {
+        bet_data: betData,
+        distribution,
+        user_login: userLogin,
+
+---
+
+    }
+  }
+
+  private static simulateBetPayout(betData: BetData, distribution: PayoutDistribution): number {
+    // Simplified payout simulation
+    // In reality, this would use the exact same algorithm as the game
+    const multipliers = Object.keys(distribution).map(Number).sort((a, b) => a - b);
+    const randomIndex = Math.floor(Math.random() * multipliers.length);
+    const selectedMultiplier = multipliers[randomIndex];
+    
+
+---
+
+    // Simplified payout simulation
+    // In reality, this would use the exact same algorithm as the game
+    const multipliers = Object.keys(distribution).map(Number).sort((a, b) => a - b);
+    const randomIndex = Math.floor(Math.random() * multipliers.length);
+    const selectedMultiplier = multipliers[randomIndex];
+    
+    return Math.floor(betData.raw_bet * (selectedMultiplier / 10000));
+  }
+}
