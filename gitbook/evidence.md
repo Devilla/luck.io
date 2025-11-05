@@ -86,7 +86,7 @@ No Game logic provided:
 
 ## \[12] Data flow (RNG → off-chain → payout)
 
-Github Repo : [https://github.com/Devilla/luck.io](https://github.com/Devilla/luck.io/evidence_pack/game_logic/game_flow_offchain.svg)
+<figure><img src=".gitbook/assets/base2@2x.png" alt=""><figcaption></figcaption></figure>
 
 ## \[13] No published RTP/odds per game on-chain
 
@@ -101,8 +101,6 @@ Github Repo : [https://github.com/Devilla/luck.io](https://github.com/Devilla/lu
 <figure><img src=".gitbook/assets/unknown (30).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src=".gitbook/assets/unknown (31).png" alt=""><figcaption></figcaption></figure>
-
-\\
 
 ## \[14] Backend distributions
 
