@@ -4,7 +4,7 @@ description: RNG & Oracles (Control, centralization, manipulation risk)
 
 # Evidence
 
-\[1] Oracle signer  transactions list
+## [1] Oracle signer  transactions list
 
 <figure><img src=".gitbook/assets/unknown.png" alt=""><figcaption></figcaption></figure>
 
