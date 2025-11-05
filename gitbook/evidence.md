@@ -4,13 +4,11 @@ description: RNG & Oracles (Control, centralization, manipulation risk)
 
 # Evidence
 
-## [1] Oracle signer  transactions list
+## \[1] Oracle signer transactions list
 
 <figure><img src=".gitbook/assets/unknown.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/unknown (2).png" alt=""><figcaption></figcaption></figure>
-
-
+<figure><img src=".gitbook/assets/unknown (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 \[2] Same signer used across multiple users/games
 
@@ -23,8 +21,6 @@ description: RNG & Oracles (Control, centralization, manipulation risk)
 <figure><img src=".gitbook/assets/unknown (5).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src=".gitbook/assets/unknown (3).png" alt=""><figcaption></figcaption></figure>
-
-
 
 \[3] No public instructions to run an oracle node
 
@@ -58,7 +54,7 @@ description: RNG & Oracles (Control, centralization, manipulation risk)
 
 <figure><img src=".gitbook/assets/unknown (18).png" alt=""><figcaption></figcaption></figure>
 
-\[8] Timing gap: bet → VRF post&#x20;
+\[8] Timing gap: bet → VRF post
 
 <figure><img src=".gitbook/assets/unknown (20).png" alt=""><figcaption></figcaption></figure>
 
@@ -86,7 +82,7 @@ No Game logic provided:
 
 <figure><img src=".gitbook/assets/unknown (25).png" alt=""><figcaption></figcaption></figure>
 
-\[12] Data flow  (RNG → off-chain → payout)
+\[12] Data flow (RNG → off-chain → payout)
 
 Github Repo : [https://github.com/Devilla/luck.io](https://github.com/Devilla/luck.io/evidence_pack/game_logic/game_flow_offchain.svg)
 
@@ -104,8 +100,7 @@ Github Repo : [https://github.com/Devilla/luck.io](https://github.com/Devilla/lu
 
 <figure><img src=".gitbook/assets/unknown (31).png" alt=""><figcaption></figcaption></figure>
 
-\
-
+\\
 
 \[14] Backend distributions
 
@@ -115,8 +110,7 @@ Github Repo : [https://github.com/Devilla/luck.io](https://github.com/Devilla/lu
 
 <figure><img src=".gitbook/assets/Image of" alt=""><figcaption></figcaption></figure>
 
-\
-
+\\
 
 ***
 
@@ -130,8 +124,7 @@ Jackpot Case (wallet behavior, probability)
 
 <figure><img src=".gitbook/assets/unknown (34).png" alt=""><figcaption></figcaption></figure>
 
-\
-
+\\
 
 \[17] Kraken-funded deposits (2× >600 SOL)
 
@@ -143,13 +136,17 @@ Jackpot Case (wallet behavior, probability)
 
 *
 
-    <figure><img src=".gitbook/assets/unknown (40).png" alt=""><figcaption></figcaption></figure>
+```
+<figure><img src=".gitbook/assets/unknown (40).png" alt=""><figcaption></figcaption></figure>
+```
 
-    <figure><img src=".gitbook/assets/unknown (39).png" alt=""><figcaption></figcaption></figure>
+```
+<figure><img src=".gitbook/assets/unknown (39).png" alt=""><figcaption></figcaption></figure>
 
-    <figure><img src=".gitbook/assets/unknown (38).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/unknown (38).png" alt=""><figcaption></figcaption></figure>
 
-    <figure><img src=".gitbook/assets/unknown (37).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/unknown (37).png" alt=""><figcaption></figcaption></figure>
+```
 
 \[19] No DeFi/NFT usage (ephemeral wallet)
 
@@ -187,8 +184,7 @@ Jackpot Case (wallet behavior, probability)
 
 <figure><img src=".gitbook/assets/unknown (51).png" alt=""><figcaption></figcaption></figure>
 
-\
-
+\\
 
 ***
 
@@ -196,8 +192,7 @@ Payouts, Liquidity, Proof-of-Reserves
 
 \[24] Vault settlement log (typical small win auto-settled)
 
-\
-
+\\
 
 <figure><img src=".gitbook/assets/unknown (55).png" alt=""><figcaption></figcaption></figure>
 
@@ -209,26 +204,19 @@ Payouts, Liquidity, Proof-of-Reserves
 
 \[26] Cold reserve is a wallet, not a contract
 
-
-
 <figure><img src=".gitbook/assets/unknown (57).png" alt=""><figcaption></figcaption></figure>
 
 \[27] Jackpot payout not routed via vault contract
-
-
 
 <figure><img src=".gitbook/assets/unknown (58).png" alt=""><figcaption></figcaption></figure>
 
 \[28] No timelock/multisig on reserve
 
-
-
 <figure><img src=".gitbook/assets/unknown (60).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src=".gitbook/assets/unknown (59).png" alt=""><figcaption></figcaption></figure>
 
-\
-
+\\
 
 \[29] No on-chain proof-of-liabilities
 
@@ -244,8 +232,7 @@ Admin / Upgradeability / Governance
 
 <figure><img src=".gitbook/assets/unknown (63).png" alt=""><figcaption></figcaption></figure>
 
-\
-
+\\
 
 \[31] Upgrade authority is team-controlled
 
@@ -283,7 +270,7 @@ Halborn Scope / Audit Transparency
 
 \[36] Halborn scope omits RNG/oracles/game logic
 
-<figure><img src=".gitbook/assets/unknown (77).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/unknown (23) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src=".gitbook/assets/unknown (76).png" alt=""><figcaption></figcaption></figure>
 
@@ -295,7 +282,7 @@ Halborn Scope / Audit Transparency
 
 \[37] No public GitHub/IPFS for audited code
 
-<figure><img src=".gitbook/assets/unknown (78).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/unknown (75) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -304,8 +291,6 @@ Trustless vs Reality (Marketing vs facts)
 \[38] Screenshot of “provably fair for every spin” claim
 
 <figure><img src=".gitbook/assets/unknown (79).png" alt=""><figcaption></figcaption></figure>
-
-
 
 \[39] Screenshot of “decentralized oracles” claim
 
@@ -330,8 +315,6 @@ Player Seed / Verifiability (if they argue seed input)
 \[42] No Client seed input UI
 
 <figure><img src=".gitbook/assets/unknown (85).png" alt=""><figcaption></figcaption></figure>
-
-
 
 \[43] No path to reproduce outcome from seed
 
