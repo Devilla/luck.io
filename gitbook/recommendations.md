@@ -27,4 +27,4 @@ By implementing the above changes, **Luck.io can significantly improve its secur
 
 [Evidence](https://dev-koold.gitbook.io/crypto/evidence)
 
-Github Repo : [https://github.com/Devilla/luck.io](https://github.com/Devilla/luck.io/evidence_pack/game_logic/game_flow_offchain.svg)
+Github Repo : [https://github.com/Devilla/luck.io](https://github.com/Devilla/luck.io)
