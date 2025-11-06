@@ -90,8 +90,6 @@ No Game logic provided:
 
 ## \[13] No published RTP/odds per game on-chain
 
-<figure><img src=".gitbook/assets/unknown (26).png" alt=""><figcaption></figcaption></figure>
-
 <figure><img src=".gitbook/assets/unknown (27).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src=".gitbook/assets/unknown (28).png" alt=""><figcaption></figcaption></figure>
@@ -108,9 +106,7 @@ No Game logic provided:
 
 ## \[15] No user-verifiable reproduction path (no client seed binding)
 
-<figure><img src=".gitbook/assets/Image of" alt=""><figcaption></figcaption></figure>
-
-\\
+<div data-full-width="true"><figure><img src=".gitbook/assets/Screenshot 2025-11-06 at 11.42.50 AM.png" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/Screenshot 2025-11-06 at 11.42.07 AM.png" alt=""><figcaption></figcaption></figure></div>
 
 ***
 
