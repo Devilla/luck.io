@@ -120,8 +120,6 @@ No Game logic provided:
 
 <figure><img src=".gitbook/assets/unknown (34).png" alt=""><figcaption></figcaption></figure>
 
-\\
-
 ## \[17] Kraken-funded deposits (2× >600 SOL)
 
 <figure><img src=".gitbook/assets/unknown (36).png" alt=""><figcaption></figcaption></figure>
@@ -174,15 +172,11 @@ No Game logic provided:
 
 <figure><img src=".gitbook/assets/unknown (51).png" alt=""><figcaption></figcaption></figure>
 
-\\
-
 ***
 
 Payouts, Liquidity, Proof-of-Reserves
 
 ## \[24] Vault settlement log (typical small win auto-settled)
-
-\\
 
 <figure><img src=".gitbook/assets/unknown (55).png" alt=""><figcaption></figcaption></figure>
 
@@ -206,8 +200,6 @@ Payouts, Liquidity, Proof-of-Reserves
 
 <figure><img src=".gitbook/assets/unknown (59).png" alt=""><figcaption></figcaption></figure>
 
-\\
-
 ## \[29] No on-chain proof-of-liabilities
 
 <figure><img src=".gitbook/assets/unknown (61).png" alt=""><figcaption></figcaption></figure>
@@ -221,8 +213,6 @@ Admin / Upgradeability / Governance
 ## \[30] Program marked upgradeable (BPF Loader)
 
 <figure><img src=".gitbook/assets/unknown (63).png" alt=""><figcaption></figcaption></figure>
-
-\\
 
 ## \[31] Upgrade authority is team-controlled
 
@@ -300,31 +290,47 @@ Trustless vs Reality (Marketing vs facts)
 
 ***
 
-Player Seed / Verifiability (if they argue seed input)
-
 ## \[42] No Client seed input UI
+
+Earlier, no Client Seed Input provided.
 
 <figure><img src=".gitbook/assets/unknown (85).png" alt=""><figcaption></figcaption></figure>
 
+Recently, **Client Seed UI added** but **no verification** that it is used for RNG with **Proov VRF hash (Server Seed)**. &#x20;
+
+<figure><img src=".gitbook/assets/Screenshot 2025-11-07 at 4.41.26 AM.png" alt=""><figcaption></figcaption></figure>
+
+
+
 ## \[43] No path to reproduce outcome from seed
 
-* No seed input ui \[42]
+<figure><img src=".gitbook/assets/Screenshot 2025-11-06 at 12.17.20 PM.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src=".gitbook/assets/Screenshot 2025-11-06 at 12.17.45 PM.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src=".gitbook/assets/Screenshot 2025-11-06 at 12.18.39 PM.png" alt=""><figcaption></figcaption></figure>
 
 ***
 
-Public Explorer (“we show everything now”) rebuttal
-
 ## \[44] Explorer shows logs, not pre-commit proofs
+
+Public Explorer (“we show everything now”) rebuttal
 
 <figure><img src=".gitbook/assets/unknown (86).png" alt=""><figcaption></figcaption></figure>
 
 ## \[45] Example: bet log with no player-seed binding
 
-* No seed input ui \[42]
+**Custom Seed** (i.e. Player Seed) not used with **Proov VRF to generate RNG** for game outcome.&#x20;
+
+In simple terms, **Custom seed parameter** which is just taken in the **bet request** but **not combined with RNG** which is the least for any online crypto casino.
+
+<figure><img src=".gitbook/assets/Screenshot 2025-11-06 at 12.17.20 PM (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src=".gitbook/assets/Screenshot 2025-11-06 at 12.17.45 PM (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src=".gitbook/assets/Screenshot 2025-11-06 at 12.18.39 PM (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
-
-Minimal test case (dev tool / repro)
 
 ## \[46] 3 real bets with full fields (CSV)
 
