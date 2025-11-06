@@ -130,11 +130,11 @@ No Game logic provided:
 
 ## \[18] Micro-tx burst to gambling dApps
 
-<figure><img src=".gitbook/assets/unknown (93).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/unknown (40) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/unknown (78).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/unknown (39) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/unknown (77).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/unknown (38) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src=".gitbook/assets/unknown (2).png" alt=""><figcaption></figcaption></figure>
 
