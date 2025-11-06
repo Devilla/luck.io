@@ -130,19 +130,13 @@ Jackpot Case (wallet behavior, probability)
 
 ## \[18] Micro-tx burst to gambling dApps
 
-*
+<figure><img src=".gitbook/assets/unknown (93).png" alt=""><figcaption></figcaption></figure>
 
-```
-<figure><img src=".gitbook/assets/unknown (40).png" alt=""><figcaption></figcaption></figure>
-```
+<figure><img src=".gitbook/assets/unknown (78).png" alt=""><figcaption></figcaption></figure>
 
-```
-<figure><img src=".gitbook/assets/unknown (39).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/unknown (77).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/unknown (38).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src=".gitbook/assets/unknown (37).png" alt=""><figcaption></figcaption></figure>
-```
+<figure><img src=".gitbook/assets/unknown (2).png" alt=""><figcaption></figcaption></figure>
 
 ## \[19] No DeFi/NFT usage (ephemeral wallet)
 
