@@ -106,11 +106,11 @@ No Game logic provided:
 
 ## \[15] No user-verifiable reproduction path (no client seed binding)
 
-<div data-full-width="true"><figure><img src=".gitbook/assets/Screenshot 2025-11-06 at 11.42.50 AM.png" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/Screenshot 2025-11-06 at 11.42.07 AM.png" alt=""><figcaption></figcaption></figure></div>
+<figure><img src=".gitbook/assets/unknown (94).png" alt=""><figcaption></figcaption></figure>
 
-***
+<figure><img src=".gitbook/assets/unknown (95).png" alt=""><figcaption></figcaption></figure>
 
-Jackpot Case (wallet behavior, probability)
+<figure><img src=".gitbook/assets/unknown (96).png" alt=""><figcaption></figcaption></figure>
 
 ## \[16] Winner wallet page (5or7BF…): full TX history
 
