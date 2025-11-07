@@ -13,4 +13,4 @@
   * [Conclusion](gitbook/conclusion.md)
   * [Recommendations](gitbook/recommendations.md)
   * [Evidence](gitbook/evidence.md)
-  * [Lucky.io - Proov Network Analytics Tool](gitbook/readme.md)
+  * [Luck.io - Proov Network Analytics Tool](gitbook/readme.md)
