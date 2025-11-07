@@ -318,6 +318,8 @@ Public Explorer (“we show everything now”) rebuttal
 
 <figure><img src=".gitbook/assets/unknown (86).png" alt=""><figcaption></figcaption></figure>
 
+***
+
 ## \[45] Example: bet log with no player-seed binding
 
 **Custom Seed** (i.e. Player Seed) not used with **Proov VRF to generate RNG** for game outcome.&#x20;
