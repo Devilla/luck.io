@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Technical Security Audit of Luck.io and Proov Protocol](README.md)
+* [Technical Security Audit of Luck.io and Proov Protocol](../)
 * [Executive Summary](executive-summary.md)
 * [System Architecture Overview](system-architecture-overview.md)
 * [RNG and Oracle Control Analysis](rng-and-oracle-control-analysis.md)

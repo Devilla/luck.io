@@ -1,7 +1,6 @@
 # Table of contents
 
-* [Lucky.io - Proov Network Analytics](README.md)
-* [Technical Security Audit of Luck.io and Proov Protocol](gitbook/README.md)
+* [Technical Security Audit of Luck.io and Proov Protocol](README.md)
   * [Table of contents](gitbook/SUMMARY.md)
   * [Executive Summary](gitbook/executive-summary.md)
   * [System Architecture Overview](gitbook/system-architecture-overview.md)
@@ -14,3 +13,4 @@
   * [Conclusion](gitbook/conclusion.md)
   * [Recommendations](gitbook/recommendations.md)
   * [Evidence](gitbook/evidence.md)
+  * [Lucky.io - Proov Network Analytics Tool](gitbook/readme.md)
