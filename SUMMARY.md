@@ -1,0 +1,16 @@
+# Table of contents
+
+* [Lucky.io - Proov Network Analytics](README.md)
+* [Technical Security Audit of Luck.io and Proov Protocol](gitbook/README.md)
+  * [Table of contents](gitbook/SUMMARY.md)
+  * [Executive Summary](gitbook/executive-summary.md)
+  * [System Architecture Overview](gitbook/system-architecture-overview.md)
+  * [RNG and Oracle Control Analysis](gitbook/rng-and-oracle-control-analysis.md)
+  * [Game Logic Verifiability](gitbook/game-logic-verifiability.md)
+  * [Jackpot Wallet Behavior and Statistical Improbability of Wins](gitbook/jackpot-wallet-behavior-and-statistical-improbability-of-wins.md)
+  * [Upgradeability and Admin Control](gitbook/upgradeability-and-admin-control.md)
+  * [Payout System and Liquidity Transparency](gitbook/payout-system-and-liquidity-transparency.md)
+  * [Summary of Decentralization vs. Trust Claims](gitbook/summary-of-decentralization-vs.-trust-claims.md)
+  * [Conclusion](gitbook/conclusion.md)
+  * [Recommendations](gitbook/recommendations.md)
+  * [Evidence](gitbook/evidence.md)
