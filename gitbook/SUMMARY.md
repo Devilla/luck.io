@@ -10,5 +10,5 @@
 * [Payout System and Liquidity Transparency](payout-system-and-liquidity-transparency.md)
 * [Summary of Decentralization vs. Trust Claims](summary-of-decentralization-vs.-trust-claims.md)
 * [Conclusion](conclusion.md)
-* [Recommendation](recommendations.md)
+* [Recommendations](recommendations.md)
 * [Evidence](evidence.md)
