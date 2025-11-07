@@ -24,7 +24,3 @@ By implementing the above changes, **Luck.io can significantly improve its secur
 **Final Verdict:** At present, Luck.io and Proov Protocol deliver a novel hybrid of on-chain and off-chain gaming, but they **require substantial trust in the team**. The concept of provably fair gambling is partially realized – the random seeds are verifiable – but the lack of end-to-end verifiability means it does not fully meet the ideals of a trustless system. Until the recommended improvements are made, users should approach the platform with an understanding of these limitations and risks. Luck.io has the opportunity to set a new standard in crypto gambling by addressing these issues, thereby providing both the convenience of blockchain betting and the genuine security of decentralization.
 
 ***
-
-[Evidence](https://dev-koold.gitbook.io/crypto/evidence)
-
-Github Repo : [https://github.com/Devilla/luck.io](https://github.com/Devilla/luck.io)
