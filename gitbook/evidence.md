@@ -84,6 +84,10 @@ No Game logic provided:
 
 <figure><img src=".gitbook/assets/unknown (25).png" alt=""><figcaption></figcaption></figure>
 
+<figure><img src="../.gitbook/assets/Screenshot 2025-11-10 at 7.40.13 PM.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/Screenshot 2025-11-10 at 7.41.14 PM.png" alt=""><figcaption></figcaption></figure>
+
 ## \[12] Data flow (RNG → off-chain → payout)
 
 <figure><img src=".gitbook/assets/base2@2x.png" alt=""><figcaption></figcaption></figure>
@@ -274,6 +278,8 @@ Trustless vs Reality (Marketing vs facts)
 
 ## \[39] Screenshot of “decentralized oracles” claim
 
+<figure><img src="../.gitbook/assets/Screenshot 2025-11-10 at 7.53.34 PM.png" alt=""><figcaption></figcaption></figure>
+
 <figure><img src=".gitbook/assets/unknown (80).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src=".gitbook/assets/unknown (82).png" alt=""><figcaption></figcaption></figure>
@@ -296,11 +302,9 @@ Earlier, no Client Seed Input provided.
 
 <figure><img src=".gitbook/assets/unknown (85).png" alt=""><figcaption></figcaption></figure>
 
-Recently, **Client Seed UI added** but **no verification** that it is used for RNG with **Proov VRF hash (Server Seed)**. &#x20;
+Recently, **Client Seed UI added** but **no verification** that it is used for RNG with **Proov VRF hash (Server Seed)**.
 
 <figure><img src=".gitbook/assets/Screenshot 2025-11-07 at 4.41.26 AM.png" alt=""><figcaption></figcaption></figure>
-
-
 
 ## \[43] No path to reproduce outcome from seed
 
@@ -322,7 +326,7 @@ Public Explorer (“we show everything now”) rebuttal
 
 ## \[45] Example: bet log with no player-seed binding
 
-**Custom Seed** (i.e. Player Seed) not used with **Proov VRF to generate RNG** for game outcome.&#x20;
+**Custom Seed** (i.e. Player Seed) not used with **Proov VRF to generate RNG** for game outcome.
 
 In simple terms, **Custom seed parameter** which is just taken in the **bet request** but **not combined with RNG** which is the least for any online crypto casino.
 
@@ -356,6 +360,6 @@ In simple terms, **Custom seed parameter** which is just taken in the **bet requ
 
 ## \[50] Comparision and Architecture upgrades
 
-<figure><img src=".gitbook/assets/unknown (92).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/comparrison.png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src=".gitbook/assets/base8.png" alt=""><figcaption></figcaption></figure>
