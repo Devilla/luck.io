@@ -14,3 +14,22 @@
   * [Recommendations](gitbook/recommendations.md)
   * [Evidence](gitbook/evidence.md)
   * [Luck.io - Proov Network Analytics Tool](gitbook/readme.md)
+
+## Game Audit
+
+* [Dice Game Audit \[Duel\]](game-audit/dice-game-audit-duel.md)
+* [Plinko Game Audit \[Duel\]](game-audit/plinko-game-audit-duel.md)
+* [Proposed Single Game Structure](game-audit/proposed-single-game-structure.md)
+* [Template Individual](game-audit/template-individual.md)
+* [Copy of Dice Game Audit \[Duel\]](game-audit/copy-of-dice-game-audit-duel.md)
+
+## WriteChoice
+
+* [Audit Home Page/Dashboard](writechoice/audit-home-page-dashboard.md)
+* [Executive Summary](writechoice/executive-summary.md)
+* [Prelim Game Template](writechoice/prelim-game-template.md)
+
+## Staging
+
+* [Dashboard](staging/dashboard.md)
+* [Dice Game Audit](staging/dice-game-audit.md)
