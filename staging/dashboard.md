@@ -6,7 +6,7 @@ description: >-
 
 # Dashboard
 
-
+(certification badge)
 
 {% hint style="success" %}
 **Duel.com**
