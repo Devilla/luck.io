@@ -1928,93 +1928,84 @@ Dice Audit – Execution Checklist
 
 ***
 
-### 5. Exploit & Edge-Case Testing
+### 5. Fairness Integrity Testing
 
 #### What Was Tested
 
-Attempts to break provably fair guarantees by:
+Every provably fair system makes implicit guarantees to players. This section tests whether those guarantees hold under adversarial conditions by attempting to:
 
-* Predicting outcomes before betting
-* Manipulating results after betting
-* Gaining unfair advantage via implementation flaws
+* Predict outcomes before a bet is placed
+* Alter or influence results after a bet is placed
+* Replay, reuse, or manipulate cryptographic inputs to gain an unfair advantage
+* Exploit cross-round or cross-user state to influence outcomes
 
 #### What This Means for Players
 
-* Outcomes cannot be predicted in advance
-* Results cannot be altered after a bet is placed
-* No known exploit paths allow unfair advantage
+* No one — not the player, not the casino — can know or control the outcome before it is determined
+* Once a bet is placed, the result cannot be changed
+* Each bet is cryptographically unique and irreversible
+* Your results are independent of every other player's results
 
 #### Verdict Summary
 
-| Exploit Category                  | Status | Finding                                       |
-| --------------------------------- | ------ | --------------------------------------------- |
-| Outcome prediction                | ✅ Pass | Outcomes cannot be predicted before betting   |
-| Post-bet manipulation             | ✅ Pass | Results cannot be altered after bet is placed |
-| Seed lifecycle abuse              | ✅ Pass | Commit-reveal integrity maintained            |
-| Nonce reuse or desync             | ✅ Pass | Each bet uses unique, sequential input        |
-| RNG bias exploitation             | ✅ Pass | No statistical skew detected                  |
-| Cross-bet or cross-user influence | ✅ Pass | Bets are fully isolated                       |
+| Exploit Category              | Status | Finding                                                       |
+| ----------------------------- | ------ | ------------------------------------------------------------- |
+| Outcome prediction            | ✅ Pass | Outcomes cannot be predicted before betting                   |
+| Post-bet tamper resistance    | ✅ Pass | Results cannot be altered after bet is placed                 |
+| Seed commitment integrity     | ✅ Pass | Commit-reveal protocol cannot be bypassed                     |
+| Nonce uniqueness & sequencing | ✅ Pass | Each bet uses unique, sequential input                        |
+| Entropy isolation             | ✅ Pass | No hidden, mixed, or predictable entropy sources              |
+| Round & player isolation      | ✅ Pass | Outcomes are fully isolated across rounds and users           |
+| Payout integrity              | ✅ Pass | Game parameters and payouts cannot be manipulated client-side |
 
 **Overall Verdict:**
 
-🟢 **No Exploitable Vulnerabilities Detected**
+🟢 **All Fairness Guarantees Verified**
 
-All tested exploit categories failed to produce any unfair advantage. No known attack vectors were successful under realistic gameplay conditions.
+All provably fair integrity tests passed. No adversarial condition was able to violate any fairness guarantee under realistic gameplay conditions.
 
-#### How Exploit & Edge-Case Testing Work
+#### How Fairness Integrity Testing Works
 
 <details>
 
 <summary>How Exploit &#x26; Edge-Case Testing Work</summary>
 
-This section documents the exploit classes tested against Duel's Dice game, the threat model used, and the results of each test. Detailed procedures and payloads are excluded from this public report to prevent misuse.
+This section documents the fairness guarantees tested, the methodology used, and the results of each test. Detailed procedures and reproduction steps are excluded from this public report to prevent misuse.
 
 #### 5.1 Threat Model
 
-An exploit would allow a player or the casino to predict outcomes, manipulate results, or gain an unfair advantage by abusing weaknesses in the provably fair implementation.&#x20;
+A fairness violation would allow a player or the casino to predict outcomes, alter results, or gain an unfair advantage by exploiting weaknesses in the provably fair implementation.
 
-This audit evaluates whether any such conditions are possible under realistic gameplay constraints.
+This audit tests whether any such violation is possible under realistic gameplay constraints, targeting the cryptographic and deterministic properties that provably fair systems rely on.
 
 ***
 
-#### 5.2 Exploit Reference Framework
+#### 5.2 Fairness Integrity Framework
 
-Exploit testing is based on the ProvablyFair.org Exploit Reference Database, a curated catalog of real, historically observed failures in provably fair systems.
+Testing is based on the ProvablyFair.org Fairness Integrity Framework, a structured methodology derived from real, historically observed failures in provably fair systems.
 
-The database includes exploit classes derived from:
+The framework defines five categories of fairness guarantees, each tested independently:
 
-* Incorrect seed lifecycle handling
-* Nonce reuse or unintended resets
-* Mixed or hidden entropy sources
-* Stateful RNG implementations
-* Hash truncation or modulo bias errors
-* Cross-round or cross-user state leakage
-
-Each exploit class targets a specific provably fair guarantee and attempts to violate it under controlled conditions.
-
-#### Exploit Coverage Overview
-
-| Exploit Category      | Player Guarantee Being Tested                   |
-| --------------------- | ----------------------------------------------- |
-| Outcome prediction    | Outcomes are unpredictable before betting       |
-| Post-bet manipulation | Results cannot be altered after a bet is placed |
-| Seed lifecycle abuse  | Server seed commitment cannot be bypassed       |
-| Nonce misuse          | Each bet is unique and irreversible             |
-| RNG bias exploitation | Every outcome has an equal chance               |
-| State leakage         | Bets are isolated across rounds and players     |
+| Category                  | What It Protects                                                            |
+| ------------------------- | --------------------------------------------------------------------------- |
+| Nonce Integrity           | Each bet is unique, sequential, and non-replayable                          |
+| Seed Commitment Integrity | The commit-reveal protocol is enforced and cannot be bypassed               |
+| Outcome Determinism       | Identical inputs always produce identical results; outcomes are final       |
+| Round & Player Isolation  | No state leakage between rounds or between users                            |
+| Payout Integrity          | Game parameters and payouts are computed server-side and cannot be injected |
 
 ***
 
 #### 5.3 Testing Approach (High Level)
 
-For each exploit class:
+For each fairness guarantee:
 
-1. A known historical failure pattern is selected from the reference database
-2. The corresponding provably fair invariant is targeted
+1. A known historical failure pattern is selected from the framework
+2. The corresponding fairness invariant is targeted
 3. The system is tested under realistic gameplay conditions
 4. Any deviation from expected behavior is flagged for review
 
-Exploit procedures, payloads, and reproduction steps are intentionally abstracted in the public report to avoid disclosing actionable attack vectors.
+Detailed procedures, payloads, and reproduction steps are intentionally abstracted in the public report to avoid disclosing actionable information.
 
 </details>
 
@@ -2024,46 +2015,67 @@ Exploit procedures, payloads, and reproduction steps are intentionally abstracte
 
 <summary>Evidence &#x26; Coverage Index</summary>
 
-#### 5.4 Exploit Coverage Matrix
+#### 5.4 Fairness Integrity Matrix
 
-| Exploit Class        | Targeted Invariant       | Result | Evidence          |
-| -------------------- | ------------------------ | ------ | ----------------- |
-| Seed manipulation    | Commit-reveal integrity  | ✅ PASS | Seed tests        |
-| Seed replay          | Seed uniqueness          | ✅ PASS | Dataset checks    |
-| Nonce reuse          | Nonce monotonicity       | ✅ PASS | Nonce sequencing  |
-| Nonce desync         | Bet ordering integrity   | ✅ PASS | Transition tests  |
-| Client seed abuse    | Client entropy isolation | ✅ PASS | RNG dependency    |
-| Mixed entropy        | Entropy isolation        | ✅ PASS | Code inspection   |
-| RNG bias             | Uniform distribution     | ✅ PASS | Bias tests        |
-| Hash truncation      | Full hash usage          | ✅ PASS | HMAC verification |
-| State leakage        | Stateless RNG            | ✅ PASS | Isolation tests   |
-| Cross-user influence | Session isolation        | ✅ PASS | Seed scoping      |
+**Nonce Integrity**
+
+| Test                                                 | Invariant Tested            | Result | Evidence                 |
+| ---------------------------------------------------- | --------------------------- | ------ | ------------------------ |
+| Reuse same nonce for multiple bets                   | Nonce uniqueness            | PASS   | Nonce sequencing tests   |
+| Skip nonce forward                                   | Nonce progression integrity | PASS   | Nonce sequencing tests   |
+| Send invalid nonce values (negative, zero, overflow) | Invalid nonce rejection     | PASS   | Nonce boundary tests     |
+| Nonce continuity after reconnect                     | Nonce persistence           | PASS   | Session continuity tests |
+
+**Seed Commitment Integrity**
+
+| Test                                      | Invariant Tested            | Result | Evidence              |
+| ----------------------------------------- | --------------------------- | ------ | --------------------- |
+| Send empty, null, or omitted client seed  | Deterministic seed handling | PASS   | Seed validation tests |
+| Change seed after bet is placed           | Seed lock at bet acceptance | PASS   | Seed lifecycle tests  |
+| Check for server seed reuse across rounds | Server seed uniqueness      | PASS   | Entropy analysis      |
+| Check for server seed reuse across users  | Per-user seed uniqueness    | PASS   | Entropy analysis      |
+| Correlate seeds with timestamps or IDs    | Seed unpredictability       | PASS   | Entropy analysis      |
+
+**Outcome Determinism**
+
+| Test                          | Invariant Tested              | Result | Evidence            |
+| ----------------------------- | ----------------------------- | ------ | ------------------- |
+| Replay known input tuple      | Deterministic reproducibility | PASS   | Parity verification |
+| Replay settle/cashout request | Outcome finality              | PASS   | Replay tests        |
+
+**Round & Player Isolation**
+
+| Test                                          | Invariant Tested  | Result | Evidence             |
+| --------------------------------------------- | ----------------- | ------ | -------------------- |
+| Analyse cross-round outcome patterns          | Stateless RNG     | PASS   | Statistical analysis |
+| Compare distributions across concurrent users | Session isolation | PASS   | Isolation tests      |
+
+**Payout Integrity**
+
+| Test                                       | Invariant Tested        | Result | Evidence                 |
+| ------------------------------------------ | ----------------------- | ------ | ------------------------ |
+| Tamper request parameters beyond UI limits | Server-side enforcement | PASS   | Parameter boundary tests |
+| Inject multiplier or payout fields         | Server-side computation | PASS   | Field injection tests    |
 
 ***
 
-#### 5.5 Illustrative Exploit Attempt (Redacted)
+#### 5.5 Illustrative Test (Redacted)
 
-**Example:** Nonce Reuse / Replay Attack
+**Example: Nonce Replay Attempt**
 
-Exploit Goal
+**Goal:** Reproduce a favorable outcome by reusing a previously observed (serverSeed, clientSeed, nonce) tuple.
 
-Attempt to reproduce a favorable outcome by reusing a previously observed (serverSeed, clientSeed, nonce) tuple.
-
-Observed Behavior
+**Observed Behavior:**
 
 * Nonce increments strictly per bet
 * No reuse detected within any seed session
-* Identical inputs only reproduce historical outcomes
+* Identical inputs only reproduce historical outcomes — no profit opportunity
 
-Result
-
-❌ Exploit not possible
-
-This behavior is consistent across all observed seed sessions.
+**Result:** Fairness guarantee holds. This behavior is consistent across all observed seed sessions.
 
 ***
 
-#### 5.6 Verified Exploit Invariants
+#### 5.6 Verified Fairness Invariants
 
 The following invariants were tested and verified:
 
@@ -2072,17 +2084,20 @@ The following invariants were tested and verified:
 | Outcomes cannot be predicted before betting | ✅ PASS |
 | Outcomes cannot be altered after betting    | ✅ PASS |
 | No replay of favorable outcomes             | ✅ PASS |
-| No cross-bet influence                      | ✅ PASS |
-| No cross-user influence                     | ✅ PASS |
+| No cross-round influence on results         | ✅ PASS |
+| No cross-user influence on results          | ✅ PASS |
 | No client-side leverage over server entropy | ✅ PASS |
+| Game parameters enforced server-side        | ✅ PASS |
 
 ***
 
-#### 5.7 Disclosure & Limitations
+#### 5.7 Scope & Limitations
 
-Detailed exploit procedures, payloads, and reproduction steps are intentionally excluded from this public report to prevent misuse.
+This section verifies the integrity of the provably fair implementation under adversarial conditions. It confirms that the cryptographic guarantees — outcome determinism, seed commitment, nonce uniqueness, entropy isolation, and payout integrity — hold as designed.
 
-Full exploit test artifacts are retained internally by ProvablyFair.org and may be disclosed to the operator under NDA if required.
+This certification does not constitute a comprehensive security audit of the operator's platform, infrastructure, wallet systems, or application logic beyond the provably fair implementation. Implementation-level observations identified during verification, if any, are reported to the operator privately and are not part of this published certification.
+
+Detailed test procedures, payloads, and reproduction steps are retained internally by ProvablyFair.org and may be disclosed to the operator under NDA if required.
 
 </details>
 
