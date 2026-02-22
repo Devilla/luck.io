@@ -4,9 +4,9 @@
 
 This audit evaluated **Duel.com’s provably fair architecture** across eight core games: Dice, Crash, Plinko, Blackjack, Roulette, Keno, Mines, and Cross Road. The objective was to determine whether game outcomes are **cryptographically reproducible, statistically sound, and resistant to structural manipulation.**
 
-Validation was conducted across five domains: deterministic outcome generation, entropy integrity, live-to-verifier parity, RTP mathematical accuracy, and structured exploit surface testing. Assessment combined source-level review, independent deterministic recomputation, large-scale statistical simulation, and controlled adversarial testing.
+Validation was conducted across five domains: deterministic outcome generation, entropy integrity, live-to-verifier parity, RTP mathematical accuracy, and structured fairness integrity testing. Assessment combined source-level review, independent deterministic recomputation, large-scale statistical simulation, and controlled adversarial testing.
 
-Live production bets were captured and recomputed using disclosed inputs. Monte Carlo simulations validated theoretical RTP alignment across configurable parameters. Exploit testing executed a structured matrix covering seed lifecycle handling, nonce sequencing, entropy substitution, payout mapping integrity, and state synchronization edge cases.
+Live production bets were captured and recomputed using disclosed inputs. Monte Carlo simulations validated theoretical RTP alignment across configurable parameters. Fairness integrity testing verified seed commitment, nonce sequencing, outcome determinism, round isolation, and payout integrity under adversarial conditions.
 
 Across all reviewed games, outcomes were found to be **cryptographically reproducible, statistically unbiased within expected variance tolerances, and consistent with documented payout structures** at the time of audit.
 
@@ -78,25 +78,19 @@ For games with adjustable risk settings, RTP alignment was validated across all 
 
 ***
 
-#### Exploit Surface Analysis
+#### Fairness Integrity Analysis
 
-A structured exploit matrix covering 147 categorized attack scenarios was executed, including:
+A structured integrity framework covering **120 game integrity checks** was executed across five categories:
 
-• Seed lifecycle manipulation
+* Nonce integrity and sequencing
+* Seed commitment and lifecycle
+* Outcome determinism and replay resistance
+* Round and player isolation
+* Payout integrity and parameter enforcement
 
-• Nonce sequencing attacks
+**All fairness Invariants were verified within the defined scope of testing.**
 
-• Entropy substitution attempts
-
-• Payout mapping inconsistencies
-
-• State synchronization edge cases
-
-• High-value round stress conditions
-
-**No critical vulnerabilities were identified within the defined scope of testing.**
-
-No tested vector enabled:
+No tested vector within the defined scope enabled:
 
 • Outcome prediction
 
@@ -106,7 +100,7 @@ No tested vector enabled:
 
 • Unauthorized bankroll advantage
 
-All tested attack surfaces were either structurally mitigated or not reproducible under controlled conditions.
+All fairness invariants held under adversarial conditions. No tested scenario was able to violate any guarantee.
 
 ***
 
@@ -134,7 +128,7 @@ This certification covers:
 
 • RTP mathematical correctness
 
-• Exploit surface within tested scope
+• Fairness integrity within tested scope
 
 This certification does not cover:
 
