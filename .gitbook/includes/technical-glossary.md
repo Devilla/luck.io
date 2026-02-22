@@ -73,8 +73,8 @@ The rule that determines if a bet wins or loses. In Dice: "Roll Over" wins if re
 
 ### Audit Terms
 
-**Exploit**\
-A method to gain unfair advantage by manipulating or predicting outcomes. Common exploits include seed prediction, nonce replay, timing attacks, or hidden entropy injection.
+**Fairness Violation**\
+A condition where a player or casino could predict, alter, or unfairly influence outcomes. Examples include seed prediction, nonce replay, or hidden entropy injection.
 
 **Entropy**\
 Randomness or unpredictability in a system. In provably fair games, entropy comes from both the casino (server seed) and player (client seed).

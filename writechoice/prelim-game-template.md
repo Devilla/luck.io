@@ -21,7 +21,7 @@ description: Dice Game Audit [Duel] - ProvablyFair.org
 
 ## Dice Audit Overview
 
-This audit independently validates the Dice game operated by Duel.com across five domains: deterministic outcome generation, entropy integrity, live-to-verifier parity, RTP mathematical accuracy, and exploit surface testing.
+This audit independently validates the Dice game operated by Duel.com across five domains: deterministic outcome generation, entropy integrity, live-to-verifier parity, RTP mathematical accuracy, and fairness integrity testing.
 
 ### What Was Audited
 
@@ -53,7 +53,7 @@ This audit evaluates the **Dice** game operated by **Duel Casino** to verify tha
 * Outcomes are deterministic and reproducible
 * Live game results match the public verifier
 * Randomness behaves as advertised
-* No known exploit classes were observed at audit time
+* All fairness integrity checks passed at audit time
 
 ### **What Audit Excludes**
 
@@ -65,17 +65,17 @@ This audit evaluates the **Dice** game operated by **Duel Casino** to verify tha
 
 ### Audit Verdict
 
-| Check                      | Result                                                           | Reference |
-| -------------------------- | ---------------------------------------------------------------- | --------- |
-| **Overall Status**         | ✅ Pass                                                           |           |
-| **RTP Verified**           | ✅ 99.9% ± \[0.1% House Edge]                                     |           |
-| **Live ↔ Verifier Parity** | ✅ 100% - All test rounds matched                                 |           |
-| **Commit-Reveal System**   | ✅ Passed - SHA-256 verified                                      |           |
-| **Seed Handling**          | ✅ Passed - Player control verified                               |           |
-| **RNG Analysis**           | ✅ Passed - Unbiased via rejection sampling                       |           |
-| **Payout Logic**✅          | ✅ Passed - All payouts verified correct                          |           |
-| **Known Exploits Tested**  | ✅ Passed - <mark style="color:red;">7/7 testable exploits</mark> |           |
-| **Determinism**            | ✅ Passed - Full reproducibility confirmed                        |           |
+| Check                      | Result                                     | Reference |
+| -------------------------- | ------------------------------------------ | --------- |
+| **Overall Status**         | ✅ Pass                                     |           |
+| **RTP Verified**           | ✅ 99.9% ± \[0.1% House Edge]               |           |
+| **Live ↔ Verifier Parity** | ✅ 100% - All test rounds matched           |           |
+| **Commit-Reveal System**   | ✅ Passed - SHA-256 verified                |           |
+| **Seed Handling**          | ✅ Passed - Player control verified         |           |
+| **RNG Analysis**           | ✅ Passed - Unbiased via rejection sampling |           |
+| **Payout Logic**           | ✅ Passed - All payouts verified correct    |           |
+| **Integrity Checks**       | ✅ Passed - 15/15 fairness checks           |           |
+| **Determinism**            | ✅ Passed - Full reproducibility confirmed  |           |
 
 ### Public Repository Link
 
@@ -1937,7 +1937,7 @@ Every provably fair system makes implicit guarantees to players. This section te
 * Predict outcomes before a bet is placed
 * Alter or influence results after a bet is placed
 * Replay, reuse, or manipulate cryptographic inputs to gain an unfair advantage
-* Exploit cross-round or cross-user state to influence outcomes
+* Leverage cross-round or cross-user state to influence outcomes
 
 #### What This Means for Players
 
@@ -1948,7 +1948,7 @@ Every provably fair system makes implicit guarantees to players. This section te
 
 #### Verdict Summary
 
-| Exploit Category              | Status | Finding                                                       |
+| Fairness Guarantee            | Status | Finding                                                       |
 | ----------------------------- | ------ | ------------------------------------------------------------- |
 | Outcome prediction            | ✅ Pass | Outcomes cannot be predicted before betting                   |
 | Post-bet tamper resistance    | ✅ Pass | Results cannot be altered after bet is placed                 |
@@ -1968,13 +1968,13 @@ All provably fair integrity tests passed. No adversarial condition was able to v
 
 <details>
 
-<summary>How Exploit &#x26; Edge-Case Testing Work</summary>
+<summary>How Fairness Integrity Testing Works</summary>
 
 This section documents the fairness guarantees tested, the methodology used, and the results of each test. Detailed procedures and reproduction steps are excluded from this public report to prevent misuse.
 
 #### 5.1 Threat Model
 
-A fairness violation would allow a player or the casino to predict outcomes, alter results, or gain an unfair advantage by exploiting weaknesses in the provably fair implementation.
+A fairness violation would allow a player or the casino to predict outcomes, alter results, or gain an unfair advantage through weaknesses in the provably fair implementation.
 
 This audit tests whether any such violation is possible under realistic gameplay constraints, targeting the cryptographic and deterministic properties that provably fair systems rely on.
 
