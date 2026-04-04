@@ -1,2 +1,0 @@
-# Plinko Game Audit \[Duel]
-
